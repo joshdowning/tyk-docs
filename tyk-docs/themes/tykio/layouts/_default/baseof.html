@@ -303,6 +303,43 @@
   <script type='text/javascript' src="{{ "js/docs-navigation.js" | relURL }}"></script>
   <script type='text/javascript' src="{{ "js/docs-table-of-contents.js" | relURL }}"></script>
 
+  <script type='text/javascript'>
+  var usWords = [
+  {{ range $uk, $us := $.Site.Data.us }}
+   ["{{$uk}}", "{{$us}}"],
+  {{ end }}
+  ["dummy","dummy"]]
+
+  String.prototype.replaceAll = function(search, replacement) {
+      var target = this;
+      return target.replace(new RegExp(search, 'g'), replacement);
+  };
+  
+  replaceFunc = function(){
+     var date = new Date()
+     var timezone = date.getTimezoneOffset()/60
+     
+     if (!(timezone <= -5 && timezone >= -10)) {
+       //return
+     }
+
+     newBody = document.body.innerHTML
+     
+     usWords.forEach(function(pair){
+       newBody = newBody.replaceAll(pair[0], pair[1])
+       newBody = newBody.replaceAll(pair[0].charAt(0).toUpperCase()+pair[0].slice(1), pair[1].charAt(0).toUpperCase()+pair[1].slice(1))
+     })
+
+     if (newBody != document.body.innerHTML) {
+       document.body.innerHTML = newBody;
+     }
+  }
+
+  window.addEventListener('DOMContentLoaded', replaceFunc) 
+  $(document).on('turbolinks:click', replaceFunc)
+
+  </script>
+
   <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css"
