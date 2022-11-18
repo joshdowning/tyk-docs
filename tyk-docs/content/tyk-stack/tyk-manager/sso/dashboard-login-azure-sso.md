@@ -21,69 +21,30 @@ This guide assumes the following:
 2. Go to app registrations and create or access an application you want to use for Dashboard access.
   - if you are creating an application, give it a name and register it 
 3. Add a redirect URL to your application as callback to TIB in your Azure application:
-   - In your app, either via the Authentication menu or the redirect URL shortcut navigate to and add the redirect to TIB in the Web category i.e. `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect/callback`.
-    (/docs/img/diagrams/generate-or-login-user-profile.png)
+  - In your app, either via the Authentication menu or the redirect URL shortcut navigate to and add the redirect to TIB in the Web category i.e. `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect/callback`.
+    (/docs/img/azureAD/redirect-URL.png)
 4. Go to Overview and add a secret in Client Credentials. Don't forget to copy the secret value- not the secretID. 
-    (/docs/img/diagrams/generate-or-login-user-profile.png)
+    (/docs/img/azureAD/overview.png)
 
-the users and groups for the app in the relevant sections of the Azure menus. See their documentation for more detail: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
+See their documentation for more detail: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
 
-
-## TIB's Side
-6. Set the profile in `profiles.json` as follows:
-   - Copy from your Azure AD client the `client ID`     to `ProviderConfig.UseProviders[].key`
-   - Create a new client secret for you app and copy from your Azure AD client the `Client secret` to `ProviderConfig.UseProviders[].secret`
-   - Add your Azure AD tenants discovery url `"https://login.microsoftonline.com/{azure-tenant-id}/v2.0/.well-known/openid-configuration"` to `ProviderConfig.UseProviders[].DiscoverURL`
-
-   Example of a `profiles.json` file:
-```{.json}
-[{
-  "ActionType": "GenerateOrLoginUserProfile",
-  "ID": "{PROFILE-NAME-IN-TIB}",
-  "OrgID": "5a54a74550200d0001975584",
-  "IdentityHandlerConfig": {
-    "DashboardCredential": "{DASHBOARD-SECRET}"
-  },
-  "ProviderConfig": {
-    "CallbackBaseURL": "http://{TIB-DOMAIN}:{TIB-PORT}",
-    "FailureRedirect": "http://{DASHBOARD-DOMAIN}:{DASHBOARD-PORT}/?fail=true",
-    "UseProviders": [
-    {
-      "Key": "{Azure-App-Client-ID}",
-      "Secret": "{Azure-App-Client-SECRET}",
-      "Scopes": ["openid", "email"],
-      "DiscoverURL": "https://login.microsoftonline.com/{AZURE-TENANT-ID}/v2.0/.well-known/openid-configuration",
-      "Name": "openid-connect"
-    }
-  ]
-  },
-  "ProviderName": "SocialProvider",
-  "ReturnURL": "http://{DASHBOARD-DOMAIN}:{DASHBOARD-PORT}/tap",
-  "Type": "redirect"
-}]
-```
-
-
-7. Start TIB by running the binary (`profiles.json` is in the same CWD)
-   See [Install TIB]({{< ref "advanced-configuration/integrate/3rd-party-identity-providers#tib" >}}) for detailed instructions on how to install TIB
+## Dashboard's side 
+1. Log in to your dashboard and select Identity Management, located under System Management
+2. Create a profile and select OpenID Connect as the provider type
+3. Under Profile Configuration, paste the secret value, clientID, and Discover URL from the Azure site. 
+  - Profile Configuation may look something like this:
+  (/docs/img/azureAD/profile-configuration.png)
+  - The Discover URL is created by Azure and can be located by selecting Endpoints on their site
+  (/docs/img/azureAD/endpoints.png)
 8. Test that it works:
-   From the browser call `http://localhost:3010/auth/{PROFILE-NAME-IN-TIB}/openid-connect`
+   From the browser call `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect`
     - If it's working you'll be redirected to Azures's web page and will be asked to enter your Azure user name and password.
     - If you were successfully authenticated by Azure then you'll be redirected to the Tyk Dashboard and login into it without going through the login page. Job's done!
-9. If you need to update your profile then you can use TIB's REST API as follows:
-
-```{.copyWrapper} 
-curl http://{TIB-DOMAIN}:{TIB-PORT}/api/profiles/{PROFILE-NAME-IN-TIB} -H "Authorization: {MY-SECRET}" -H "Content-type: application/json" -X PUT --data "@./my-new-dashboard-profile.json" | prettyjson
-```
-
-  - POST and DELETE calls apply as normal
-  - You can post a few profiles to TIB.
-  - See [TIB REST API]({{< ref "tyk-identity-broker/tib-rest-api" >}}) for more details.
 
 ## The magic - The flow behind the scenes:
  1. The initial call to the endpoint on TIB was redirected to Azure
  2. Azure AD identified the user
- 3. Azure redirected the call back to TIB endpoint (according to the callback you set up on the client earlier in step 3) and from TIB
+ 3. Azure redirected the call back to TIB endpoint (according to the callback you set up on the client earlier)
  4. TIB, via REST API call to the dashboard, created a nonce and a special session attached to it.
  5. TIB redirected the call to the dashboard to a special endpoint `/tap` ( it was defined on the profile under `ReturnURL`) with the nonce that was created.
  6. The Dashboard on the `/tap` endpoint finds the session that is attached to the `nonce`, login the user and redirect to the dashboard first page
