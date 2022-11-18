@@ -14,20 +14,19 @@ This is an end-to-end worked example of how you can use [AzureAD](https://azure.
 ) to log in to your Dashboard.
 This guide assumes the following:
 
-* You already have authorised access to Tyk's Dashboard. If you haven't, [get the authorisation key by following this doc]({{< ref "basic-config-and-security/security/dashboard/create-users#a-name-with-api-a-create-a-dashboard-user-with-the-api" >}}).
-* For simplicity, you are running TIB locally on port 3010
-* You are able to edit TIB's configuration file.
-
+* You already have authorised access to Tyk's Dashboard. If you haven't, [get the authorisation key by following this doc](/docs/basic-config-and-security/security/dashboard/create-users/#a-name-with-api-a-create-a-dashboard-user-with-the-api).
 
 ## Azures's side
 1. Access your Azure Portal and navigate to the Azure Active Directory page.
 2. Go to app registrations and create or access an application you want to use for Dashboard access.
+  - if you are creating an application, give it a name and register it 
+3. Add a redirect URL to your application as callback to TIB in your Azure application:
+   - In your app, either via the Authentication menu or the redirect URL shortcut navigate to and add the redirect to TIB in the Web category i.e. `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect/callback`.
+    (/docs/img/diagrams/generate-or-login-user-profile.png)
+4. Go to Overview and add a secret in Client Credentials. Don't forget to copy the secret value- not the secretID. 
+    (/docs/img/diagrams/generate-or-login-user-profile.png)
 
-3. Add a redirect URL to you application as callback to TIB in your Azure application:
-   - In your app, either via the Authenitcation menu or the redirect URL shortcut navigate to and add the redirect to TIB in the Web category i.e. `http://localhost:3010/auth/{PROFILE-NAME-IN-TIB}/openid-connect/callback`.
-   - `{PROFILE-NAME-IN-TIB}` - this can be any string you choose, as long as you use the same one for the profile in TIB.
-
-4. Configure the users and groups for the app in the relevant sections of the Azure menus. See their documentation for more detail: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
+the users and groups for the app in the relevant sections of the Azure menus. See their documentation for more detail: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
 
 
 ## TIB's Side
@@ -68,7 +67,7 @@ This guide assumes the following:
 7. Start TIB by running the binary (`profiles.json` is in the same CWD)
    See [Install TIB]({{< ref "advanced-configuration/integrate/3rd-party-identity-providers#tib" >}}) for detailed instructions on how to install TIB
 8. Test that it works:
-   From the broswer call `http://localhost:3010/auth/{PROFILE-NAME-IN-TIB}/openid-connect`
+   From the browser call `http://localhost:3010/auth/{PROFILE-NAME-IN-TIB}/openid-connect`
     - If it's working you'll be redirected to Azures's web page and will be asked to enter your Azure user name and password.
     - If you were successfully authenticated by Azure then you'll be redirected to the Tyk Dashboard and login into it without going through the login page. Job's done!
 9. If you need to update your profile then you can use TIB's REST API as follows:
