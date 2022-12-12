@@ -26,7 +26,7 @@ This guide assumes the following:
 4. Go to Overview and add a secret in Client Credentials. Don't forget to copy the secret value- not the secretID. 
     (/docs/img/azureAD/overview.png)
 
-See their documentation for more detail: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
+Check [Microsoft's documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app) for more detail.
 
 ## Dashboard's side 
 1. Log in to your dashboard and select Identity Management, located under System Management
