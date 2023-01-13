@@ -41,12 +41,36 @@ See their documentation for more detail: https://docs.microsoft.com/en-us/azure/
     - If it's working you'll be redirected to Azures's web page and will be asked to enter your Azure user name and password.
     - If you were successfully authenticated by Azure then you'll be redirected to the Tyk Dashboard and login into it without going through the login page. Job's done!
 
-## The magic - The flow behind the scenes:
- 1. The initial call to the endpoint on TIB was redirected to Azure
- 2. Azure AD identified the user
- 3. Azure redirected the call back to TIB endpoint (according to the callback you set up on the client earlier)
- 4. TIB, via REST API call to the dashboard, created a nonce and a special session attached to it.
- 5. TIB redirected the call to the dashboard to a special endpoint `/tap` ( it was defined on the profile under `ReturnURL`) with the nonce that was created.
- 6. The Dashboard on the `/tap` endpoint finds the session that is attached to the `nonce`, login the user and redirect to the dashboard first page
+## Enhancements
 
-{{< img src="/img/diagrams/generate-or-login-user-profile.png" alt="Generate Or Login User Profile flow" >}}
+Once it's working you can also add more enhancements such as automatic user group mapping from your AzureAD security groups or users groups to Tyk Dashboards groups.
+
+### User group mapping
+Group mapping can be managed in Advanced Settings by passing an identity provider and selecting a Tyk User Group which can be created in the the User Groups section of
+the dashboard. When creating your User Group, one can also select and adjust the permissions for each group.
+
+In the Advanced Settings of the Provider Configuration, you can select the scopes you would like your request to include. By default, Tyk will provide the connectid scope, anything additional must be requested. 
+
+(/docs/img/azureAD/additional_options.png)
+
+(/docs/img/azureAD/raw_editor.png)
+
+For debugging purposes, you can find an example we created using the OpenID Connect playground.
+1. Add the redirect url found on the OpenID Connect site to the redirect urls found under the Web section
+(/docs/img/azureAD/additional_redirect_url_added)
+2. Copy the OpenID Connect endpoint
+3. On the OpenID Connect site select Edit. In the Server Template dropdown menu select the Custom option and paste the endpoint in the Discovery Document URL. 
+4. Press the Use Discovery Document button and this will autofill Authorization Token Endpoint, Token Endpoint, and Token Keys Endpoint
+5. Copy and paste the Client ID and Client Secret. Scope is autofilled for you and save the configuration.
+(/docs/img/azureAD/openid_connect/step_1.png)
+6. Press start and if done correctly, this should prompt you to sign in to your Azure account.
+(/docs/img/azureAD/openid_connect/step_2.png)
+7. You should then be redirected back to OpenID Connect where you'll be shown the Exchange Code. This needs to be turned into an access token. Press the exchange button under the request and then press Next
+(/docs/img/azureAD/openid_connect/step_3.png)
+(/docs/img/azureAD/openid_connect/step_4.png)
+8. We can then verify this by pressing the verify button. We can also view the information or scope of what is being returned by heading to jwt.io and viewing the payload: data there.
+(/docs/img/azureAD/openid_connect/step_5.png)
+9. We are given an object with key, value pairs and we can pass in the key ie. name to our Custom User Group and the value of to our Identity Provider Role in our Tyk dashboard as shown in the example above. 
+(/docs/img/azureAD/openid_connect/step_6.png)
+
+To try this yourself, we have included the link: https://openidconnect.net/
