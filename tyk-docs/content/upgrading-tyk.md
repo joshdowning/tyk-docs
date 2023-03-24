@@ -7,13 +7,27 @@ menu:
 ---
 
 ## Introduction
-Follow the instructions relevant to your Tyk setup to upgrade your Tyk components.
-Note: Upgrading Tyk will not overwrite your configuration files.  However, it is especially good practice to routinely back these files up, especially right before upgrading your software.
 
-## Tyk Cloud Classic
-Tyk Cloud Classic users are automatically upgraded to the latest version as soon as it's released.
+Please read this through before upgrading any of Tyk components.
 
-## Tyk Multi-Cloud Gateway
+This page aims to provide guidance for upgrading Tyk products. When upgrading Tyk, you'd need to upgrade separately every component that you are using. To avoid confusion each product offering and within it each component will have a separate section discussing and detailing the relevant information.
+
+All our components share a few common standards:
+- We do not introduce breaking changes unless specifically stated in the release (and it rarely happens).
+- Upgrade does not overwrite your configuration files, however, it is a good practice to routinely back these files up (using a git or another tool), especially right before upgrading your software.
+- Upgradng essentially means pulling the new images from https://hub.docker.com/u/tykio, and linux packages from https://packagecloud.io/tyk/ 
+- You do not need to migrate or run migration scripts unless specifically stated in the release (and it rarely happens).
+- Check our [versioning and long-term-support policies]({{< ref "frequently-asked-questions/long-term-support-releases/" >}}) for more details on the way we release miajor, minor, new features, patches and the supported releases.
+- If you experience any issues with the new version you pulled, please contact Tyk Support for assistance support@tyk.io
+
+## Tyk OSS Gateway
+
+### docker / Kubernetes
+To upgrade the gateway simple pull the image you want to use from [docker hub](https://hub.docker.com/r/tykio/tyk-gateway/tags) 
+For example `docker pull tykio/tyk-gateway:v4.3`
+
+
+## Tyk Multi-Cloud / Hybrid Gateway
 We recommend you upgrade your Tyk Multi-Cloud Gateway in the following way:
 
  1. Take a backup of your `tyk.conf` and `start.sh` files. This is important if you have modified your Docker Container in your current version.
@@ -22,7 +36,7 @@ We recommend you upgrade your Tyk Multi-Cloud Gateway in the following way:
 ### For MacOS Users
 From a Terminal:
 
-```{.copyWrapper}
+```bash
 curl "https://raw.githubusercontent.com/lonelycode/tyk-hybrid-docker/master/start.sh" -o "start.sh"
 chmod +x start.sh
 ./start.sh [PORT] [TYK-SECRET] [RPC-CREDENTIALS] [API CREDENTIALS]
