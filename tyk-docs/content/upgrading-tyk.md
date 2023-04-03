@@ -23,7 +23,7 @@ All our components share a few common standards:
 ## Tyk OSS Gateway
 
 ### docker / Kubernetes
-To upgrade the gateway simple pull/use the image you want to use from [docker hub](https://hub.docker.com/r/tykio/tyk-gateway/tags) 
+To upgrade the Gateway simply pull/use the image you want to use from [docker hub](https://hub.docker.com/r/tykio/tyk-gateway/tags) 
 For example `docker pull tykio/tyk-gateway:v4.3`
 
 
