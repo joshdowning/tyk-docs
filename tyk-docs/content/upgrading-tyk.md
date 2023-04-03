@@ -8,7 +8,7 @@ menu:
 
 ## Introduction
 
-Please read this through before upgrading any of Tyk components.
+Please read this through before upgrading any of your Tyk components.
 
 This page aims to provide guidance for upgrading Tyk products. When upgrading Tyk, you'd need to upgrade separately every component that you are using. To avoid confusion each product offering and within it each component will have a separate section discussing and detailing the relevant information.
 
