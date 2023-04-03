@@ -10,7 +10,7 @@ menu:
 
 Please read this through before upgrading any of your Tyk components.
 
-This page aims to provide guidance for upgrading Tyk products. When upgrading Tyk, you'd need to upgrade separately every component that you are using. To avoid confusion each product offering and within it each component will have a separate section discussing and detailing the relevant information.
+This page provides guidance for upgrading your Tyk installation. When upgrading Tyk, you need to consider every component (e.g. Gateway, Pump, Dashboard) separately taking into consideration the style of deployment you've implemented. We have structured this guide by deployment type (e.g. Self-Managed, Multi-DC) to keep all the information you need in one place.
 
 All our components share a few common standards:
 - We do not introduce breaking changes unless specifically stated in the release notes (and it rarely happens).
