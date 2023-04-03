@@ -17,7 +17,7 @@ All our components share a few common standards:
 - Upgrade does not overwrite your configuration files, however, it is good practice to back these files up routinely (using git or another tool); we strongly recommend you take a backup before upgrading Tyk.
 - Upgrading essentially means pulling the new images from https://hub.docker.com/u/tykio, and linux packages from https://packagecloud.io/tyk/ 
 - You do not need to migrate or run migration scripts for your APIs, policies or other assets created in Tyk unless specifically stated in the release (and it rarely happens).
-- Check our [versioning and long-term-support policies]({{< ref "frequently-asked-questions/long-term-support-releases/" >}}) for more details on the way we release miajor, minor, new features, patches and the supported releases.
+- Check our [versioning and long-term-support policies]({{< ref "frequently-asked-questions/long-term-support-releases/" >}}) for more details on the way we release major and minor features, patches and how long we support each release.
 - If you experience any issues with the new version you pulled, please contact Tyk Support for assistance support@tyk.io
 
 ## Tyk OSS Gateway
