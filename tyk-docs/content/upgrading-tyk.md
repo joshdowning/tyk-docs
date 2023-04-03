@@ -126,7 +126,7 @@ Check this [instalaltion page]({{< ref "apim/open-source/installation/" >}}) for
 1. Update your gateway config file 
 2. Use the official upgrade best practices of your installation of choice.
 
- >>>>>>WIP from here<<<<<<
+# AAAAAAAAA WIP from here AAAAAAAA
 ## Tyk Multi-Cloud / Hybrid Gateway
 This gateway is used to connect to the control plan of *Tyk Cloud* or to your self managed control plane (MDCB).
 
