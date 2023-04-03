@@ -13,7 +13,7 @@ Please read this through before upgrading any of your Tyk components.
 This page aims to provide guidance for upgrading Tyk products. When upgrading Tyk, you'd need to upgrade separately every component that you are using. To avoid confusion each product offering and within it each component will have a separate section discussing and detailing the relevant information.
 
 All our components share a few common standards:
-- We do not introduce breaking changes unless specifically stated in the release (and it rarely happens).
+- We do not introduce breaking changes unless specifically stated in the release notes (and it rarely happens).
 - Upgrade does not overwrite your configuration files, however, it is good practice to back these files up routinely (using git or another tool); we strongly recommend you take a backup before upgrading Tyk.
 - Upgradng essentially means pulling the new images from https://hub.docker.com/u/tykio, and linux packages from https://packagecloud.io/tyk/ 
 - You do not need to migrate or run migration scripts unless specifically stated in the release (and it rarely happens).
