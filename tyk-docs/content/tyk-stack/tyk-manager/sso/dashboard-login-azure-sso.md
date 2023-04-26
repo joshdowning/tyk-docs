@@ -35,7 +35,8 @@ Check [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-di
   - Profile Configuation may look something like this:
   ![profile-configuration](/docs/img/azureAD/profile-configuration.png)
   - The Discover URL is created by Azure and can be located by selecting Endpoints on their site
-  ![endpoints] (/docs/img/azureAD/endpoints.png)
+  ![endpoints](/docs/img/azureAD/endpoints.png)
+
 8. Test that it works:
    From the browser call `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect`
     - If it's working you'll be redirected to Azures's web page and will be asked to enter your Azure user name and password.
@@ -62,7 +63,7 @@ For debugging purposes, you can find an example we created using the OpenID Conn
 3. On the OpenID Connect site select Edit. In the Server Template dropdown menu select the Custom option and paste the endpoint in the Discovery Document URL. 
 4. Press the Use Discovery Document button and this will autofill Authorization Token Endpoint, Token Endpoint, and Token Keys Endpoint
 5. Copy and paste the Client ID and Client Secret. Scope is autofilled for you and save the configuration.
-![openid-connect-step-1](/docs/img/azureAD/openid_connect/step_1.png)
+![openid-connect-step-1](/docs/img/azureAD/openid_connect/step-1.png)
 6. Press start and if done correctly, this should prompt you to sign in to your Azure account.
 ![openid-connect-step-2](/docs/img/azureAD/openid_connect/step_2.png)
 7. You should then be redirected back to OpenID Connect where you'll be shown the Exchange Code. This needs to be turned into an access token. Press the exchange button under the request and then press Next
