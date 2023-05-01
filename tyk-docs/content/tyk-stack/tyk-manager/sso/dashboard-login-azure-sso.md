@@ -24,10 +24,10 @@ This guide assumes the following:
 3. Add a redirect URL to your application as callback to TIB in your Azure application:
   - In your app, either via the Authentication menu or the redirect URL shortcut navigate to and add the redirect to TIB in the Web category i.e. `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect/callback`.
 
-    ![redirect-url](/docs/img/azureAD/redirect-URL.png)
+    ![redirect-url](/docs/img/azureAD/redirect-URL-1.png)
 4. Go to Overview and add a secret in Client Credentials. Don't forget to copy the secret value- not the secretID. 
 
-    ![overview](/docs/img/azureAD/overview.png)
+    ![overview](/docs/img/azureAD/overview-1.png)
 
 Check Microsoft's [documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app) for more detail.
 
@@ -37,11 +37,11 @@ Check Microsoft's [documentation](https://docs.microsoft.com/en-us/azure/active-
 3. Under Profile Configuration, paste the secret value, clientID, and Discover URL from the Azure site. 
   - Profile Configuation may look something like this:
 
-  ![profile-configuration](/docs/img/azureAD/profile-configuration.png)
+  ![profile-configuration](/docs/img/azureAD/profile-configuration-1.png)
 
   - The Discover URL is created by Azure and can be located by selecting Endpoints on their site
 
-  ![endpoints](/docs/img/azureAD/endpoints.png)
+  ![endpoints](/docs/img/azureAD/endpoints-1.png)
 
 8. Test that it works:
    From the browser call `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect`
@@ -58,14 +58,14 @@ the dashboard. When creating your User Group, one can also select and adjust the
 
 In the Advanced Settings of the Provider Configuration, you can select the scopes you would like your request to include. By default, Tyk will provide the connectid scope, anything additional must be requested. 
 
-![profile-configuration-additional-options](/docs/img/azureAD/additional_options.png)
+![profile-configuration-additional-options](/docs/img/azureAD/additional-options.png)
 
-![profile-configuration-raw-editor](/docs/img/azureAD/raw_editor.png)
+![profile-configuration-raw-editor](/docs/img/azureAD/raw-editor.png)
 
 For debugging purposes, you can find an example we created using the OpenID Connect playground.
 1. Add the redirect url found on the OpenID Connect site to the redirect urls found under the Web section
 
-![additional-url-added](/docs/img/azureAD/openid_connect/additional_redirect_url_added.png)
+![additional-url-added](/docs/img/azureAD/openid_connect/additional_redirect_url.png)
 2. Copy the OpenID Connect endpoint
 3. On the OpenID Connect site select Edit. In the Server Template dropdown menu select the Custom option and paste the endpoint in the Discovery Document URL. 
 4. Press the Use Discovery Document button and this will autofill Authorization Token Endpoint, Token Endpoint, and Token Keys Endpoint
