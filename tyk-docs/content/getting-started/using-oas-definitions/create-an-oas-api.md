@@ -63,7 +63,7 @@ curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas' \
     "title": "OAS Petstore",
     "version": "1.0.0"
   },
-  "security": [
+  "basic-config-and-security/security": [
     {
       "api_key": []
     }
@@ -479,7 +479,7 @@ Existing OAS configuration:
   ....
 }
 ...
-"security": [
+"basic-config-and-security/security": [
   {
     "api_key": []
   }
@@ -508,7 +508,7 @@ Then send a PUT request back to your Tyk Dashboard to update its configuration.
 
 | Property     | Description            |
 |--------------|------------------------|
-| Resource URL | /tyk/apis/oas/{api-id} |
+| Resource URL | /api/apis/oas/{api-id} |
 | Method       | PUT                    |
 | Type         | None                   |
 | Body         | Tyk OAS API Definition |

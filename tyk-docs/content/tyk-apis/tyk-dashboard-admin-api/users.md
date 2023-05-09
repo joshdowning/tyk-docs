@@ -50,7 +50,7 @@ admin-auth: 12345
 
 ### Add user
 
-When you add a new user, they are created without a password being set. After adding a user, you need to use the [Set Password](/docs/tyk-dashboard-api/users/#set-user-password) call to set a password using the `user-id` created.
+When you add a new user, they are created without a password being set. After adding a user, you need to use the [Set Password]({{< ref "tyk-dashboard-api/users#set-user-password" >}}) call to set a password using the `user-id` created.
 
 | **Property** | **Description** |
 | ------------ | --------------- |
@@ -114,7 +114,7 @@ You can also create a user without an `org_id`. This will create a "Super User",
 
 ### Update User
 
-You need to have the `users` [Permission object](/docs/basic-config-and-security/security/dashboard/user-roles/#the-permissions-object) set to write to use **Update User**.
+You need to have the `users` [Permission object]({{< ref "basic-config-and-security/security/dashboard/user-roles#the-permissions-object" >}}) set to write to use **Update User**.
 
 | **Property** | **Description**          |
 | ------------ | ------------------------ |
@@ -133,6 +133,7 @@ Host: localhost:3000
 admin-auth: 12345
 
 {
+  "access_key": "3a8c1cea90af485575bb5455c2e9fb68",
   "first_name": "Jason",
   "last_name": "File",
   "email_address": "jason.file@jasonsonson.com",
@@ -142,12 +143,18 @@ admin-auth: 12345
 }
 ```
 
+{{< note success >}}
+**Note**  
+
+If you are modifying a user password, you will need to include an access_key in the body of your request. This can be obtained from doing a GET to the same Resource URL.
+{{< /note >}}
+
 #### Sample Response
 
 ```
 {
   "Status": "OK",
-  "Message": "User created",
+  "Message": "User updated",
   "Meta": ""
 }
 ```

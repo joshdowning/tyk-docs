@@ -9,6 +9,7 @@ menu:
 
 {{< toc >}}
 
+Tyk Operator is a Kubernetes controller that manages state of Tyk CRDs and reconciles changes with Tyk Gateway or Dashboard. Given Tyk Operator is a cluster-scoped resource, it should be deployed once for a cluster only. Below shows how you can configure Tyk Operator to connect to a Tyk Gateway or Dashboard. For advanced usage where you need to connect to separate Tyk installations or Organizations within the same cluster, see [Operator context](https://github.com/TykTechnologies/tyk-operator/blob/master/docs/operator_context.md)
 
 ### Prerequisites
 
@@ -32,13 +33,7 @@ We assume you have already installed Tyk. If you don’t have it, check [this](h
 Tyk Operator is tested as compatible with v3+ of theTyk Gateway and Tyk Dashboard.
 {{< /note >}}
 
-If you are using the Self Managed edition, you need to make sure your Tyk Gateway's `tyk.conf` has `policies.allow_explicit_policy_id` set to true as follows:
-
-```bash
-"policies": {
-  "allow_explicit_policy_id": true
-},
-```
+In order for policy ID matching to work correctly, your Dashboard must have `allow_explicit_policy_id: true` and `enable_duplicate_slugs: true` and your Gateway must have `policies.allow_explicit_policy_id: true`.
 
 For Self Managed / Hybrid edition, you may want to create a user account to be used by Tyk Operator. It should have write access to the resources it is going to manage, e.g. APIs, Certificates, Policies, and Portal.
 

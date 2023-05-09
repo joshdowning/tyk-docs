@@ -9,13 +9,11 @@ aliases:
   - /advanced-configuration/integrate/sso/dashboard-login-azure-sso/
 ---
 
-
 This is an end-to-end worked example of how you can use [AzureAD](https://azure.microsoft.com/en-gb/services/active-directory/) and our [Tyk Identity Broker (TIB)](https://tyk.io/docs/concepts/tyk-components/identity-broker/
 ) to log in to your Dashboard.
 This guide assumes the following:
 
 * You already have authorised access to Tyk's Dashboard. If you haven't, [get the authorisation key by following this doc](/docs/basic-config-and-security/security/dashboard/create-users/#a-name-with-api-a-create-a-dashboard-user-with-the-api).
-
 
 ## Azures's side
 1. Access your Azure Portal and navigate to the Azure Active Directory page.

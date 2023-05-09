@@ -55,7 +55,7 @@ And you get:
 
 You need to create the API, then a policy and then edit the APi again to add the Identity Providers (IDPs).
 
-### Step 5. Re-open the policy and add the appropriate data to allow your ID Token through.
+### Step 5. Re-open the API and add the appropriate data to allow your ID Token through.
 
 Open your ID token up using `jwt.io` or something similar. You will need both the `iss` claim and the `aud` claim.
 
@@ -85,4 +85,4 @@ If you take the auth header out, or malform it, you will get the following respo
 }
 ```
 
- [1]: /docs/img/diagrams/openid_connect.png
+ [1]: /img/diagrams/openid_connect.png

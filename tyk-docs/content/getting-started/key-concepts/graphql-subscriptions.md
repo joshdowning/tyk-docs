@@ -5,127 +5,40 @@ tags: [""]
 description: ""
 menu:
   main:
-    parent: "Key Concepts"
-weight: 120
+    parent: "GraphQL"
+weight: 11
 ---
 
-{{< toc >}}
-### Introduction
+Tyk **natively** supports also GraphQL subscriptions, so you can expose your full range of GQL operations using Tyk Gateway. Subscriptions support was added in `v4.0.0` in which *graphql-ws* protocol support was introduced. 
 
-Subscriptions is new functionality added in version 4.0 In simple terms subscriptions are a way to push data from the server to the clients that choose to listen to real-time messages from the server.
+With the release of Tyk `v4.3.0` the number of supported subscription protocols has been extended.
 
-In Tyk subscriptions are using the [WebSocket protocol](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API).
-### Subscriptions schema
+In Tyk subscriptions are using the [WebSocket transport](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) for connections between the client and Gateway. For connections between Gateway and upstream WebSockets or [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) can be used.
 
-The `Subscription` type always defines the top-level fields that consumers can subscribe to. For example:
+### Supported transports and protocols
 
-```graphql
-type Subscription {
-  reviewCreated: Post
-}
-```
-The `reviewCreated` field will be updated each time a new review is published. Publishing a new review means a `Post` is created on the backend and then pushed to the subscribing consumers.
+| Transport | Protocol |
+| ----------- | ----------- |
+| WebSockets | [graphql-ws](http://github.com/apollographql/subscriptions-transport-ws) (default, no longer maintained) |
+| WebSockets | [graphql-transport-ws](http://github.com/enisdenjo/graphql-ws) |
+| HTTP | [Server-Sent Events (SSE)](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) |
 
-Consumers can subscribe to the `reviewCreated` field by sending the following query to the server:
+{{< note >}}
+**Note**  
 
-```graphql
-subscription Reviews {
-  reviewCreated {
-    author
-    date
-    review
-  }
-}
-```
-### Enabling subscriptions
+Connections between client and Gateway currently only supports WebSockets/graphql-ws.
+See [GraphQL WebSockets]({{< ref "graphql/graphql-websockets" >}}) for more information.
+{{< /note >}}
 
-There is no need to enable subscriptions separately. They are supported alongside with GraphQL as a standard. The only requirement for subscriptions to work is to [enable WebSockets]({{< ref "/content/graphql/graphql-websockets.md" >}}) in your Tyk Gateway configuration file.
+{{< note >}}
+**Note**  
 
-### How do subscriptions work in Tyk?
+If the upstream subscription GraphQL API is protected please enable the authentication via query params to pass the header through.
 
-{{< img src="/img/dashboard/graphql/tyk-subscriptions-workflow.png" alt="Tyk Subscriptions workflow" >}}
+{{< /note >}}
 
-### How we are ahead of everyone else
+There is no need to enable subscriptions separately. They are supported alongside GraphQL as a standard. The only requirement for subscriptions to work is to [enable WebSockets]({{< ref "graphql/graphql-websockets.md" >}}) in your Tyk Gateway configuration file.
 
-With Tyk, subscriptions are supported in [federation]({{< ref "/content/getting-started/key-concepts/graphql-federation.md" >}}) as well. With version 4.0 you can federate GraphQL APIs that support subscriptions. Federating subscriptions means that events pushed to consumers can be enriched with information from other federated graphs.
+Here's a general sequence diagram showing how subscriptions in Tyk work exactly:
 
-### Example of federation with subscriptions
-
-We have 3 graphs that provide information about:
-
-1. Users
-2. Products
-3. Reviews
-
-#### Users
-The `Users` service lists users who can add their reviews for different products:
-
-```graphql
-extend type Query {
-  me: User
-}
-
-type User @key(fields: "id") {
-  id: ID!
-  username: String!
-}
-```
-#### Products
-The `Products` service contains a list of products offered where Product price and stock is implemented as a subscription:
-
-```graphql
-extend type Query {
-  topProducts(first: Int = 5): [Product]
-}
-
-extend type Subscription {
-  updatedPrice: Product!
-  updateProductPrice(upc: String!): Product!
-  stock: [Product!]
-}
-
-type Product @key(fields: "upc") {
-  upc: String!
-  name: String!
-  price: Int!
-  inStock: Int!
-}
-```
-#### Reviews
-The `Reviews` service holds all the opinions of users about certain products:
-```graphql
-type Review {
-  body: String!
-  author: User! @provides(fields: "username")
-  product: Product!
-}
-
-extend type User @key(fields: "id") {
-  id: ID! @external
-  username: String! @external
-  reviews: [Review]
-}
-
-extend type Product @key(fields: "upc") {
-  upc: String! @external
-  reviews: [Review]
-}
-```
-With Tyk’s implementation of subscriptions and federation it is possible to create a subscription that’s enriched with data from other federated graphs:
-
-```graphql
-subscription {
-updatedPrice{
-  upc
-  price
-  name
-  reviews {
-    body
-    author {
-      username
-      }
-    }
-  }
-}
-  ```
-The `price` value will be pushed to consumers each time an item is sold, but the message will be enriched with data from the other subgraphs.
+{{< img src="img/dashboard/graphql/tyk-subscriptions-workflow.png" alt="Tyk Subscriptions workflow" >}}

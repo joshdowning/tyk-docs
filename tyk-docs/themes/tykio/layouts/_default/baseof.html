@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="{{ "css/docs.css" | relURL }}">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ "css/cookie.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/custom_search.css" | relURL }}">
+  {{ if not (or (findRE `docs/nightly` .Permalink) (findRE `docs/\d\.\d` .Permalink)) }}
+  <link rel="canonical" href="{{ .Permalink }}" />
+  {{ else }}
+  <meta name="robots" content="noindex" />
+  {{ end }} 
+
+
 
   <link rel="icon" type="image/png" href="{{ "images/favicon/favicon-32x32.png" | relURL }}" sizes="32x32" />
   <link rel="icon" type="image/png" href="{{ "images/favicon/favicon-16x16.png" | relURL }}" sizes="16x16" />
@@ -60,31 +68,8 @@
         if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
     })(window,document,window['_fs_namespace'],'script','user');
   }
-  </script>
-
-  <!-- Katacoda embed scenarios script -->
-  <script src="//katacoda.com/embed.js"></script>
-
-  <!-- Katacoda analytics listener -->
-  <script type="text/javascript">
-    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
-    var windowEvent = window[eventMethod];
-    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
-  
-    windowEvent(messageEvent,function(e) {
-    var d = e.data;
-    if(e && e.origin && e.origin.indexOf('katacoda.com') >= 0) {
-      var t = {
-        'event': 'katacoda-scenario',
-        'eventName': "katacoda-" + d.scenario,
-        'eventAction': d.action,
-        'eventLabel': d.label
-      }
-      console.log("Katacoda Event", d, t);
-    }
-    },false);
-  
-  </script>
+</script>
+ 
 <!-- Start of HubSpot Embed Code -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/5898904.js"></script>
 <!-- End of HubSpot Embed Code -->
@@ -115,9 +100,9 @@
         alt="Tyk API Gateway and API Management">
     </a>
     <div class="links-container">
-      <a href="{{ "/apim" | relURL }}">API Management</a>
-      <a href="{{ "/getting-started" | relURL }}">Get Started</a>
-      <a href="{{ "tyk-apis" | relURL }}">API References</a>
+      <a href="{{ "/apim/" | relURL }}">API Management</a>
+      <a href="{{ "/getting-started/" | relURL }}">Get Started</a>
+      <a href="{{ "/tyk-apis/" | relURL }}">API References</a>
    </div>
 
 
@@ -155,7 +140,10 @@
          <div style="padding-left: 30px">
             <label for="version-selector">Version: </label>
             <select onchange="var path = location.pathname.match('\/docs\/(?:nightly|[1-9][^\/]*\)?(.*)')[1].replace(/^\//,''); window.location = this.options[this.selectedIndex].value + path" id="version-selector" style="border: 1px solid #ccc">
-              <option value="/docs/">Latest - 4.1</option>
+              <option value="/docs/">Latest - 5 LTS</option>
+              <option value="/docs/4.3">4.3</option>
+              <option value="/docs/4.2/">4.2</option>
+              <option value="/docs/4.1/">4.1</option>
               <option value="/docs/4.0/">4 LTS</option>
               <option value="/docs/3.2/">3.2</option>
               <option value="/docs/3.1/">3.1</option>
@@ -202,6 +190,17 @@
           {{ end }}
         </div>
 
+         <div class="edit-button">
+           {{ if .IsPage}}
+           {{ if .File.Path}}
+           {{ $.Scratch.Set "FilePath" .File.Path }}
+           {{ end }}
+           {{ with .Site.Params.GithubEdit}}
+           <a href='{{ . }}{{ $.Scratch.Get "FilePath" }}' target="_blank">Improve this page </a>
+           {{ end }}
+           {{ end }}
+
+         </div>
         <nav class="docs-share-print share-print f-14 bold ucase">
           <!-- <a href="#" class="icon-print" data-print><span>Print</span></a> -->
 <!--           <div id="date">
@@ -213,7 +212,7 @@
 
         <nav class="docs-navigation clear" {{if .Params.hideSidebar}}style="display: none !important"{{end}}>
           <a id="previousArticle"></a>
-          <img src="/docs/img/nav-center.png"alt="Page forward and back image" /> 
+          <img src="{{ "/img/nav-center.png" | relURL }}"alt="Page forward and back image" /> 
           <a id="nextArticle"></a>
         </nav>
 

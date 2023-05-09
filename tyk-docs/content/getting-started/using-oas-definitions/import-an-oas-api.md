@@ -310,7 +310,7 @@ curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas/impor
       }
     }
   },
-  "security": [
+  "basic-config-and-security/security": [
     {
       "api_key": []
     }
@@ -380,7 +380,7 @@ You created a fully protected Tyk OAS API Definition by providing a OAS API Defi
 | Body         | Tyk OAS API Definition |
 | Param        | allowList              |
 
-#### Import OAS API Defintion with defined security scheme
+#### Import OAS API Definition allowing access to all defined paths
 
 You’re going to send an OAS API Definition to the Tyk Gateway import API, but this time you want to explicitly allow access just to paths defined in the OAS API Definition. For that we need to pass along with the request to the import API, the `allowList=true` query parameter.
 
@@ -516,9 +516,9 @@ You created an API that which tells your Tyk Gateway to allow access just on the
 | Body         | Tyk OAS API Definition |
 | Param        | validateRequest        |
 
-#### Import OAS API Defintion with defined security scheme
+#### Import OAS API Definition and enable validate request payload
 
-You’re going to send an OAS API Definition to the Tyk Gateway import API, which also contains describes the `/pet` and  POST how the payload should look like. In order for Tyk to read and validate any request agains the JSON schema provided, `validateRequest=true` query parameter is needed when calling the import endpoint.
+You’re going to send an OAS API Definition to the Tyk Gateway import API, which also contains describes the `/pet` and  POST how the payload should look like. In order for Tyk to read and validate any request against the JSON schema provided, `validateRequest=true` query parameter is needed when calling the import endpoint.
 
 ```
 curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas/import?validateRequest=true' \
@@ -644,4 +644,296 @@ For more information on how Tyk builds the middleware operations structure in or
 ```
 #### What did you just do?
 
-You created an API that which tells your Tyk Gateway to validate any incoming request, against the JSON schema defined in the OAS API Definition.
+You created an API which tells your Tyk Gateway to validate any incoming request against the JSON schema defined in the OAS API Definition.
+
+### Tutorial: Create an API with mock response enabled
+
+| Property     | Description            |
+|--------------|------------------------|
+| Resource URL | `/tyk/apis/oas/import`   |
+| Method       | POST                   |
+| Type         | None                   |
+| Body         | Tyk OAS API Definition |
+| Param        | `mockResponse`           |
+
+#### Import OAS API Definition and enable mockResponse
+
+You’re going to send an OAS API Definition to the Tyk Gateway import API, which also contains describes GET `/pet/{petId}` how the response would look like. In order for Tyk to read and mock any response against the JSON schema provided, `mockResponse=true` query parameter is needed when calling the import endpoint.
+
+```.curl
+curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas/import?mockResponse=true' \
+--header 'x-tyk-authorization: {your-secret}' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Petstore",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://petstore.swagger.io/v2"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Pet": {
+        "properties": {
+          "category": {
+            "example": "dog",
+            "type": "string"
+          },
+          "id": {
+            "example": 10,
+            "format": "int64",
+            "type": "integer"
+          },
+          "name": {
+            "example": "doggie",
+            "type": "string"
+          },
+          "status": {
+            "description": "pet status in the store",
+            "enum": [
+              "available",
+              "pending",
+              "sold"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "paths": {
+    "/pet/{petId}": {
+      "get": {
+        "tags": [
+            "pet"
+        ],
+        "summary": "Find pet by ID",
+        "description": "Returns a single pet",
+        "operationId": "getPetById",
+        "parameters": [
+            {
+                "name": "petId",
+                "in": "path",
+                "description": "ID of pet to return",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Pet"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Invalid ID supplied"
+            },
+            "404": {
+                "description": "Pet not found"
+            }
+        },
+        "security": [
+            {
+                "api_key": []
+            }
+        ]
+      }
+    }
+  }
+}'
+```
+#### Check request response
+
+If the command succeeds, you will see the following response, where key contains the newly created API ID:
+
+```.json
+{
+    "key": {api-id},
+    "status": "ok",
+    "action": "added"
+}
+```
+
+#### Restart or hot reload your Gateway
+
+Once you have created your API, you will need to either restart the Tyk Gateway, or issue a hot reload command with the following curl command:
+
+```.curl
+curl -H "x-tyk-authorization: {your-secret}" -s http://{your-tyk-host}:{port}/tyk/reload/group
+```
+
+#### Check your OAS API definition
+
+Go to /apps folder of your Tyk Gateway installation (by default in `/var/tyk-gateway`),and check the newly created Tyk OAS API Definition. You’ll notice that within the  `x-tyk-api-gateway.middleware section`, the operations section has been configured, and that for each `operationId` of the path, the `mockResponse` middleware with `fromOASExamples` has been configured.
+
+For more information on how Tyk builds the middleware operations structure in order to configure middleware,  see [Paths]({{< ref "/content/getting-started/key-concepts/paths.md" >}}).
+
+```.json
+{
+  ...
+  "x-tyk-api-gateway": {
+    ...
+    "middleware": {
+      "operations": {
+        ...
+        "getPetById": {
+          ...
+          "mockResponse": {
+            "enabled": true,
+            "fromOASExamples": {
+              "enabled": true
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+#### What did you just do?
+
+You created an API which tells your Tyk Gateway to mock response based on configured responses in OAS Definition.
+
+### Tutorial: Using the Tyk Dashboard
+
+1. Select “APIs” from the “System Management” section
+
+
+{{< img src="/img/oas/api-menu.png" alt="API Menu" >}}
+
+2. If you have a fresh Tyk installation with no other APIs added, click **Import API**:
+
+{{< img src="/img/oas/first-api.png" alt="First API screen" >}}
+
+3. If you already have APIs in your Tyk installation, click **Import API**:
+
+{{< img src="/img/oas/add-new-api.png" alt="Import API" >}}
+
+Tyk supports the following import API options:
+
+- From an OpenAPI (JSON format) file
+- From an Existing Tyk API definition
+- From a SOAP WSDL definition file
+
+#### Importing an OpenAPI Definition
+
+Tyk supports import of version 2.0 and 3.0.x OpenAPI documents to create an API Definition.
+
+When importing OpenAPI documents using the Dashboard, Tyk detects the version of the document and generates either a Tyk classic API Definition (for OpenAPI 2.0) or the new Tyk OAS API Definition (for OpenAPI 3.0.x). There is an option to create a Tyk Classic API Definition from an OpenAPI 3.0.x document if you wish.
+
+#### Import an OpenAPI 2.0 Definition
+1. From the Import API screen, select OpenAPI.
+
+{{< img src="/img/oas/open-api-format.png" alt="Import OAS 2.0 API" >}}
+
+2. Paste your OpenAPI 2.0 definition into the code editor.
+
+{{< img src="/img/oas/oas-2-code.png" alt="OAS 2.0 definition in Editor" >}}
+
+3. Note that the Dashboard has detected that an OpenAPI 2.0 definition has been imported and you need to specify an upstream URL field to proceed.
+
+{{< img src="/img/oas/upstream-url.png" alt="Upstream URL" >}}
+
+4. Click **Import API**. 
+
+{{< img src="/img/oas/import-api-button.png" alt="Import API" >}}
+
+Your API will be added to your list of APIs.
+
+#### Import an OpenAPI 3.0 Definition
+
+1. From the Import API screen, select OpenAPI.
+
+{{< img src="/img/oas/open-api-format.png" alt="Import OAS 3.0 API" >}}
+
+2. Paste your OpenAPI 3.0 definition into the code editor.
+
+{{< img src="/img/oas/oas-3-code.png" alt="OAS 3.0 definition in Editor" >}}
+
+3. Note that the Dashboard has detected that an OpenAPI 3.0 definition has been imported and you can now select between various manual and automatic configuration options.
+
+{{< img src="/img/oas/oas-3-import-options.png" alt="OAS 3.0 configuration options" >}}
+
+#### Manual Configuration options
+
+- **Custom Listen Path**: A default listen path of of `/` is set if you don't configure this option
+- **Custom Upstream URL**: The first URL listed in your `servers` section is used if you don't configure this option
+
+#### Automatic Configuration options
+
+- **Generate Validate Request Middleware**: You can automatically validate paths that have the `requestBody` and `schema` fields configured. This allows your Tyk Gateway to validate your request payload against the schema provided in your definition. See [Request Validation]({{< ref "/content/getting-started/key-concepts/request-validation.md" >}}) for more details.
+- **Apply Detected Authentication**: You can automatically apply the authentication specified in the `security` and `securitySchemes` sections of your definition. See [Authentication]({{< ref "/content/getting-started/key-concepts/authentication.md" >}}) for more details.
+- **Allow access only to defined paths**: You can restrict access to the paths documented in your definition. See [Paths]({{< ref "/content/getting-started/key-concepts/paths.md" >}}) for more details.
+
+4. Click **Import API**.
+
+{{< img src="/img/oas/import-api-button.png" alt="Import API" >}}
+
+Your API will be added to your list of APIs.
+
+#### Import a Tyk API Definition
+
+Tyk supports the import of both Tyk Classic and Tyk OAS API Definitions, and our Dashboard UI will automatically detect the one you are importing.
+
+{{< note success >}}
+**Note**  
+
+Importing a Tyk Classic API definition will redirect you to the old API Designer while importing a Tyk OAS API Definition will redirect you to our new API Designer.
+{{< /note >}}
+
+{{< img src="/img/oas/tykapi-source-format.png" alt="Tyk API format option" >}}
+
+#### Import WSDL
+
+Tyk supports import of WSDL documents to generate a Tyk Classic API Definition.
+
+{{< img src="/img/oas/wsdl-import-format.png" alt="WSDL source format option" >}}
+
+1. You need to provide a valid WSDL document, Upstream URL and optionally a set of Service Names and ports to help with setting the Track Endpoint middleware.
+
+{{< img src="/img/oas/wsdl-editor-config.png" alt="WSDL Editor and configuration option" >}}
+
+2. Click **Import API**.
+
+{{< img src="/img/oas/import-api-button.png" alt="Import API" >}}
+
+This will redirect to the old API Designer page using a Tyk Classic API Definition.
+
+#### Import API Versions from the Dashboard
+
+As well as importing new APIs, with Tyk, you can also use import to create a new version of an existing Tyk Classic API.
+
+1. Open the API Designer page and select Import Version from the **Options** drop-down.
+
+{{< img src="/img/oas/import-api-version.png" alt="Import API Version Drop-Down" >}}
+
+2. Select either OpenAPI (v2.0 or 3.0) or WSDL/XML as your source API
+
+{{< img src="/img/oas/import-api-version-config.png" alt="Import API Version Configuration" >}}
+
+3. You need to add a new **API Version Name**. **Upstream URL** is optional.
+4. Click **Import API**.
+
+{{< img src="/img/oas/import-api-button.png" alt="Import API" >}}
+
+5. Select the **Versions** tab and your new version will be available.
+6. Open the **Endpoint Designer** for your API and select your new version from **Edit Version**.
+7. You will see all the endpoints are saved for your new version.
+
+{{< img src="/img/oas/version-endpoints.png" alt="Version Endpoints" >}}
