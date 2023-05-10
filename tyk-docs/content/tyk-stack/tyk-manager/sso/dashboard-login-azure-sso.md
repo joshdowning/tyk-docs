@@ -23,10 +23,10 @@ This guide assumes the following:
 3. Add a redirect URL to your application as callback to TIB in your Azure application:
   - In your app, either via the Authentication menu or the redirect URL shortcut navigate to and add the redirect to TIB in the Web category i.e. `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect/callback`.
 
-    ![redirect-url]({{< ref "/img/azureAD/redirect-URL-1.png" >}})
+    {{< img src="/img/azureAD/redirect-URL-1.png" alt="Redirect URL" >}}
 4. Go to Overview and add a secret in Client Credentials. Don't forget to copy the secret value, not the secretID. 
 
-    ![overview]({{< ref "/img/azureAD/overview-1.png">}})
+   {{< img src="/img/azureAD/overview-1.png" alt="Overview" >}}
 
 Check Microsoft's [documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app) for more detail.
 
