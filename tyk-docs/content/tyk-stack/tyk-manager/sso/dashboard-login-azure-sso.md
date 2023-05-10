@@ -69,19 +69,19 @@ For debugging purposes, you can find an example we created using the OpenID Conn
 4. Press the Use Discovery Document button and this will autofill Authorization Token Endpoint, Token Endpoint, and Token Keys Endpoint
 5. Copy and paste the Client ID and Client Secret. Scope is autofilled for you and save the configuration.
 
-![openid-connect-step-1]({{< ref "img/azureAD/openid_connect/step-1.png">}})
+![openid-connect-step-1]({{< ref "/img/azureAD/openid_connect/step-1.png">}})
 6. Press start and if done correctly, this should prompt you to sign in to your Azure account.
 
-![openid-connect-step-2]({{< ref "img/azureAD/openid_connect/step-2.png">}})
+![openid-connect-step-2]({{< ref "/img/azureAD/openid_connect/step-2.png">}})
 7. You should then be redirected back to OpenID Connect where you'll be shown the Exchange Code. This needs to be turned into an access token. Press the exchange button under the request and then press Next.
 
-![openid-connect-step-3]({{< ref "img/azureAD/openid_connect/step-3.png">}})
-![openid-connect-step-4]({{< ref "img/azureAD/openid_connect/step-4.png">}})
+![openid-connect-step-3]({{< ref "/img/azureAD/openid_connect/step-3.png">}})
+![openid-connect-step-4]({{< ref "/img/azureAD/openid_connect/step-4.png">}})
 8. We can then verify this by pressing the verify button. We can also view the information or scope of what is being returned by heading to jwt.io and viewing the payload: data there.
 
-![openid-connect-step-5]({{< ref "img/azureAD/openid_connect/step-5.png">}})
+![openid-connect-step-5]({{< ref "/img/azureAD/openid_connect/step-5.png">}})
 9. We are given an object with key, value pairs and we can pass in the key ie. name to our Custom User Group and the value of to our Identity Provider Role in our Tyk dashboard as shown in the example above. 
 
-![openid-connect-step-6]({{< ref "img/azureAD/openid_connect/step-6.png">}})
+![openid-connect-step-6]({{< ref "/img/azureAD/openid_connect/step-6.png">}})
 
 To try this yourself, we have included the link: https://openidconnect.net/
