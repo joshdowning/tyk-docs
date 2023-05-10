@@ -63,7 +63,7 @@ In the Advanced Settings of the Provider Configuration, you can select the scope
 For debugging purposes, you can find an example we created using the OpenID Connect playground.
 1. Add the redirect url found on the OpenID Connect site to the redirect urls found under the Web section
 
-![additional-url-added]({{< ref "img/azureAD/openid_connect/additional_redirect_url.png">}})
+![additional-url-added]({{< ref "/img/azureAD/openid_connect/additional_redirect_url.png">}})
 2. Copy the OpenID Connect endpoint
 3. On the OpenID Connect site select Edit. In the Server Template dropdown menu select the Custom option and paste the endpoint in the Discovery Document URL. 
 4. Press the Use Discovery Document button and this will autofill Authorization Token Endpoint, Token Endpoint, and Token Keys Endpoint
