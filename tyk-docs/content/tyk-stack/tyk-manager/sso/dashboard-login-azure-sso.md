@@ -24,7 +24,7 @@ This guide assumes the following:
   - In your app, either via the Authentication menu or the redirect URL shortcut navigate to and add the redirect to TIB in the Web category i.e. `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect/callback`.
 
     ![redirect-url](/docs/img/azureAD/redirect-URL-1.png)
-4. Go to Overview and add a secret in Client Credentials. Don't forget to copy the secret value- not the secretID. 
+4. Go to Overview and add a secret in Client Credentials. Don't forget to copy the secret value, not the secretID. 
 
     ![overview](/docs/img/azureAD/overview-1.png)
 
@@ -33,16 +33,16 @@ Check Microsoft's [documentation](https://docs.microsoft.com/en-us/azure/active-
 ## Dashboard's side 
 1. Log in to your dashboard and select Identity Management, located under System Management
 2. Create a profile and select OpenID Connect as the provider type
-3. Under Profile Configuration, paste the secret value, clientID, and Discover URL from the Azure site. 
+3. Under Profile Configuration, paste the secret value, clientID, and well-known endpoint URL from the Azure site. 
   - Profile Configuation may look something like this:
 
   ![profile-configuration](/docs/img/azureAD/profile-configuration-1.png)
 
-  - The Discover URL is created by Azure and can be located by selecting Endpoints on their site
+  - The well-known endpoint URL is created by Azure and can be located by selecting Endpoints on their site
 
   ![endpoints](/docs/img/azureAD/endpoints-1.png)
 
-8. Test that it works:
+4. Test that it works:
    From the browser call `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect`
     - If it's working you'll be redirected to Azures's web page and will be asked to enter your Azure user name and password.
     - If you were successfully authenticated by Azure then you'll be redirected to the Tyk Dashboard and login into it without going through the login page. Job's done!
