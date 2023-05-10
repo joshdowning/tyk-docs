@@ -39,7 +39,7 @@ Check Microsoft's [documentation](https://docs.microsoft.com/en-us/azure/active-
 
   - The well-known endpoint URL is created by Azure and can be located by selecting Endpoints on their site
 
-  ![endpoints](/docs/img/azureAD/endpoints-1.png)
+  ![endpoints](/docs/img/azureAD/endpoints-11.png)
 
 4. Test that it works:
    From the browser call `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect`
