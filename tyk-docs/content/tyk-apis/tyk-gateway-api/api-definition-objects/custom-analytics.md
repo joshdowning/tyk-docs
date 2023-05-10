@@ -9,5 +9,5 @@ aliases:
     - /tyk-rest-api/api-definition-objects/custom-analytics/
 ---
 
-{{< include "api-def-custom-analytics" >}}
+{{< include "api-def-custom-analytics" >}} 
 
