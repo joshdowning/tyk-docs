@@ -4,7 +4,49 @@ Contains the [Tyk Documentation](https://tyk.io/docs/) source.
 
 ## How to Contribute
 
-We recommend contributing in the following way:
+Using Github GUI in the browser or local dev env, this is the question!
+
+### 1. Github GUI broswer
+Contributing to the docs via the browser is fast and easy. 
+GH provides great DX for making updates, committing and creating PRs via the browser. The DX for reviewing PRs is also pretty powerful.
+
+#### When to use it
+Use Github GUI broswer when you - 
+- have simple and only a few edits of the markdown files. 
+- already know the syntax for adding internal links and adding images. 
+- already know what you are going to write and you **don't** need many iterative commits to see if the result looks okay. In this case, using a local environment will be much faster (explain in the next section)
+
+#### How to use it
+Will briefly explain it as it's quite trivial - 
+1. Via the GUI you can simply click the pencil icon to start editing, then check the differences, click commit to commit the changes to a new branch and eventually create a PR. 
+2. Check that the CI jobs started running. They will have yellow colour. These jobs run tests on the website including your changes.
+3. Once the CI finishes it'll turn green. Once it's, you will see a preview link that you should use to check your changes on a real deployment of Tyk docs website.
+
+
+### 2. Local development environment
+Local environment means, checking out tyk-docs repo and updating the files using an editor or an IDE. When doing so you can test the changes by running Hugo locally and check for errors in Hugo or in the website Hugo generated.
+
+##### When to use it
+Using the browser is not always enough and you sometimes need to checkout the repo and work locally:
+You normally favour using a local envirnment when you need to -
+- test things yourself befroe you push them 
+- repeatedly push changes and test the website. 
+
+Doing so by **running Hugo locally will save you a lot of time** since it takes the CI a few minutes to update the deployment with the latest changes and finish its test before it becomes green. 
+
+##### Use cases for local development environment
+When you need to -
+- test things yourself befroe you push them
+- check that the image you added work
+- see how images are rendered in the page
+- check that the internal links you added work
+- are not sure about the syntax of links or images
+- When you work on many pages
+- When adding new files, it's easier to run it locally sinceyou ca, not sure internal links format, making changes in many files that touch exisitng links and headlines, and mainly nee then you might feel  
+
+#### How to use a Local development environment
+
+In general, we recommend the following way:
 
 * Fork this repository
 * Clone the forked repository on your machine
@@ -14,29 +56,32 @@ We recommend contributing in the following way:
 
 The following guide briefly explains how to work with Hugo, you would then need push to your forked repository and then create a Pull Request to Tyk's `master` branch.
 
-## How to Use
-
-Our Documentation is constructed using [Hugo](http://gohugo.io/).
-
-## Getting Started
+#### Getting Started
 1. Clone this repository 
 2. Navigate to the project directory
 
-### Use with Docker
+##### Using Hugo
+Our Documentation is constructed using [Hugo](http://gohugo.io/).
+
+###### Run Hugo with Docker
 1. [Docker](https://docs.docker.com/get-docker/)
 2. Run `docker-compose up` from the project directory
 
-### Use with Hugo
-1. [Install Hugo v0.96.0 or greater](https://github.com/gohugoio/hugo/releases)
-2. Run `hugo server --theme=tykio --buildDrafts --enableGitInfo` from the `tyk-docs/tyk-docs` directory
+###### Run Hugo that is installed locally
+1. [Install Hugo v0.110.0+extended or greater]([https://github.com/gohugoio/hugo/releases](https://gohugo.io/installation/)).
+2. Run `hugo server --theme=tykio --buildDrafts --enableGitInfo` from `tyk-docs/tyk-docs` directory
+3. Go to  [http://localhost:1313/docs/nightly/](http://localhost:1313/docs/nightly/) to view the docs locally
+4. The content itself is just markdown that follows the front matter block. After making a change, Hugo should auto-reload and you will be able to see the changes live in your browser (if not, refresh). Sometimes Hugo gets confused and you may need to re-run it.
 
-Go to  [http://localhost:1313/docs/nightly/](http://localhost:1313/docs/nightly/) to view the docs locally
 
-## Adding and Editing Content
+###### Adding and Editing Content
 
 The docs content lives in `tyk-docs/content`.
 
-### Add a new Section
+
+## Make the changes in the docs 
+
+### Adding a new Section and/or a new page
 
 1. Add a new folder in within the `tyk-docs/tyk-docs/content/` Directory. For example `new-section`
 2. Within your new folder create a markdown file with the following command from your terminal - `hugo new`. For the above example you would run `hugo new /new-section/new-section.md`. This file will be converted to the equivalent of an `index.html` file.
@@ -44,11 +89,11 @@ The docs content lives in `tyk-docs/content`.
 
 ![readme-example](https://user-images.githubusercontent.com/1983518/36219727-457c16f4-11b0-11e8-9839-946ef00c4655.png)
 
-### Front Matter
+#### Front Matter
 
 For each new file created via `hugo new`, the following YAML formated [Front Matter](http://gohugo.io/content-management/front-matter/) is added:
 
-```
+```markdown
 ---
 title: "New Section"
 date: 2021-02-10
@@ -71,7 +116,7 @@ You can create a dynamic, nested navigation hierarchy simply by changing the `pa
 
 Example front matter for a page:
 
-```
+```markdown
 ---
 title: "Test"
 date: 2021-02-10
@@ -84,9 +129,6 @@ weight: 10
 ---
 ```
 
-## Content
-
-The content itself is just markdown that follows the front matter block. When you add and edit new content, Hugo should auto-reload and you should be able to see the changes live in your browser (if not, refresh). Sometimes Hugo gets confused and you may need to re-run it.
 
 ### Links
 
@@ -106,7 +148,7 @@ Example:
 {{< img src="/img/docker.png" alt="Docker" width="500px" >}}
 ```
 
-`src` argument is required, rest are optional.
+`src` and `alt arguments are required.
 
 ## Shortcodes
 
