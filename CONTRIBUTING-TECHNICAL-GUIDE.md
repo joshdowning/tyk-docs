@@ -68,7 +68,7 @@ Our Documentation is constructed using [Hugo](http://gohugo.io/).
 2. Run `docker-compose up` from the project directory
 
 ###### Run Hugo that is installed locally
-1. [Install Hugo v0.110.0+extended or greater]([https://github.com/gohugoio/hugo/releases](https://gohugo.io/installation/)).
+1. [Install Hugo v0.110.0+extended or greater]([https://github.com/gohugoio/hugo/releases](https://gohugo.io/installation/))
 2. Run `hugo server --theme=tykio --buildDrafts --enableGitInfo` from `tyk-docs/tyk-docs` directory
 3. Go to  [http://localhost:1313/docs/nightly/](http://localhost:1313/docs/nightly/) to view the docs locally
 4. The content itself is just markdown that follows the front matter block. After making a change, Hugo should auto-reload and you will be able to see the changes live in your browser (if not, refresh). Sometimes Hugo gets confused and you may need to re-run it
