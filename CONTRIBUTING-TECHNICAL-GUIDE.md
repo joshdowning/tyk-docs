@@ -30,7 +30,7 @@ Local environment means, checking out tyk-docs repo and updating the files using
 Using the browser is not always enough and you sometimes need to checkout the repo and work locally.
 You normally favour using a local environment when you need to:
 test things yourself before you push them
-- repeatedly push changes and test the website. 
+- repeatedly push changes and test the website
 
 Doing so by **running Hugo locally will save you a lot of time** since it takes the CI a few minutes to update the deployment with the latest changes and finish its test before it becomes green. 
 
