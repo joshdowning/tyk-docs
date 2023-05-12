@@ -148,7 +148,7 @@ Example:
 {{< img src="/img/docker.png" alt="Docker" width="500px" >}}
 ```
 
-`src` and `alt arguments are required.
+`src` and `alt` parameters are required for images.
 
 ## Shortcodes
 
