@@ -19,7 +19,7 @@ Use Github GUI browser when you:
 #### How to use it?
 Will briefly explain it as it is quite trivial:
 1. Via the GUI you can simply click the pencil icon to start editing, then check the differences, click commit to commit the changes to a new branch and eventually create a PR. 
-2. Check that the CI jobs started running. They will have yellow colour. These jobs run tests on the website including your changes.
+Check that the CI jobs started running. These jobs run tests on the website including your changes. Running CI jobs are displayed in yellow. 
 3. Once the CI finishes it'll turn green. Once it's, you will see a preview link that you should use to check your changes on a real deployment of Tyk docs website.
 
 
