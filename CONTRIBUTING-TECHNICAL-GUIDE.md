@@ -41,7 +41,7 @@ When you need to -
 - see how images are rendered in the page
 - check that the internal links you added work
 - are not sure about the syntax of links or images
-- When you work on many pages
+when you work on many pages
 - When adding new files, it's easier to run it locally sinceyou ca, not sure internal links format, making changes in many files that touch exisitng links and headlines, and mainly nee then you might feel  
 
 #### How to use it?
