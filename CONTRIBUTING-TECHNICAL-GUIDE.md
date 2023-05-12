@@ -26,7 +26,7 @@ Will briefly explain it as it is quite trivial:
 ### 2. Local development environment
 Local environment means, checking out tyk-docs repo and updating the files using an editor or an IDE. When doing so you can test the changes by running Hugo locally and check for errors in Hugo or in the website Hugo generated.
 
-##### When to use it
+#### When to use it?
 Using the browser is not always enough and you sometimes need to checkout the repo and work locally:
 You normally favour using a local envirnment when you need to -
 - test things yourself befroe you push them 
