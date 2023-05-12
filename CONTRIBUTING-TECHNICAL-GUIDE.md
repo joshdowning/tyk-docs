@@ -24,7 +24,7 @@ Once the CI job finishes it will turn green. Upon completion, you will see a pre
 
 
 ### 2. Local development environment
-Local environment means, checking out tyk-docs repo and updating the files using an editor or an IDE. When doing so you can test the changes by running Hugo locally and check for errors in Hugo or in the website Hugo generated.
+Local environment means, checking out the tyk-docs repo and updating the files using an editor or an IDE. This allows you to test the changes by running Hugo locally and check for errors in Hugo or in the website Hugo generated.
 
 #### When to use it?
 Using the browser is not always enough and you sometimes need to checkout the repo and work locally.
