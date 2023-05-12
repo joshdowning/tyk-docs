@@ -44,7 +44,7 @@ When you need to -
 - When you work on many pages
 - When adding new files, it's easier to run it locally sinceyou ca, not sure internal links format, making changes in many files that touch exisitng links and headlines, and mainly nee then you might feel  
 
-#### How to use a Local development environment
+#### How to use it?
 
 In general, we recommend the following way:
 
