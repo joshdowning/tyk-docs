@@ -6,7 +6,7 @@ Contains the [Tyk Documentation](https://tyk.io/docs/) source.
 
 Using Github GUI in the browser or local dev env, this is the question!
 
-### 1. Github GUI broswer
+### 1. GitHub GUI browser
 Contributing to the docs via the browser is fast and easy. 
 GH provides great DX for making updates, committing and creating PRs via the browser. The DX for reviewing PRs is also pretty powerful.
 
