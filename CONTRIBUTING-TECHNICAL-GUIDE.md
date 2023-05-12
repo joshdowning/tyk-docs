@@ -16,7 +16,7 @@ Use Github GUI browser when you:
 - already know the syntax for adding internal links and adding images. 
 - already know what you are going to write and you **don't** need many iterative commits to see if the result looks okay. In this case, using a local environment will be much faster (explain in the next section)
 
-#### How to use it
+#### How to use it?
 Will briefly explain it as it's quite trivial - 
 1. Via the GUI you can simply click the pencil icon to start editing, then check the differences, click commit to commit the changes to a new branch and eventually create a PR. 
 2. Check that the CI jobs started running. They will have yellow colour. These jobs run tests on the website including your changes.
