@@ -11,7 +11,7 @@ Contributing to the docs via the browser is fast and easy.
 GH provides great DX for making updates, committing and creating PRs via the browser. The DX for reviewing PRs is also pretty powerful.
 
 #### When to use it
-Use Github GUI broswer when you - 
+Use Github GUI browser when you:
 - have simple and only a few edits of the markdown files. 
 - already know the syntax for adding internal links and adding images. 
 - already know what you are going to write and you **don't** need many iterative commits to see if the result looks okay. In this case, using a local environment will be much faster (explain in the next section)
