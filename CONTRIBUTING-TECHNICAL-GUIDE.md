@@ -10,7 +10,7 @@ Using Github GUI in the browser or local dev env, this is the question!
 Contributing to the docs via the browser is fast and easy. 
 GH provides great DX for making updates, committing and creating PRs via the browser. The DX for reviewing PRs is also pretty powerful.
 
-#### When to use it
+#### When to use it?
 Use Github GUI browser when you:
 - have simple and only a few edits of the markdown files. 
 - already know the syntax for adding internal links and adding images. 
