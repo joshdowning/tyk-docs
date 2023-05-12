@@ -35,7 +35,7 @@ test things yourself before you push them
 Doing so by **running Hugo locally will save you a lot of time** since it takes the CI a few minutes to update the deployment with the latest changes and finish its test before it becomes green. 
 
 #### Use cases for local development environment
-When you need to -
+When you need to:
 - test things yourself befroe you push them
 - check that the image you added work
 - see how images are rendered in the page
