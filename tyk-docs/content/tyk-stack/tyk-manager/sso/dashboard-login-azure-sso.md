@@ -22,10 +22,10 @@ This guide assumes the following:
 3. Add a redirect URL to your application as callback to TIB in your Azure application:
   - In your app, either via the Authentication menu or the redirect URL shortcut navigate to and add the redirect to TIB in the Web category i.e. `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect/callback`.
 
-    ![redirect-url]({{< ref "/img/azureAD/redirect-URL-1.png" >}})
+    {{< img src="/img/azureAD/redirect-URL-1.png" alt="Redirect URL" >}}
 4. Go to Overview and add a secret in Client Credentials. Don't forget to copy the secret value, not the secretID. 
 
-    ![overview]({{< ref "/img/azureAD/overview-1.png">}})
+   {{< img src="/img/azureAD/overview-1.png" alt="Overview" >}}
 
 Check Microsoft's [documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app) for more detail.
 
@@ -35,11 +35,11 @@ Check Microsoft's [documentation](https://docs.microsoft.com/en-us/azure/active-
 3. Under Profile Configuration, paste the secret value, clientID, and well-known endpoint URL from the Azure site. 
   - Profile Configuation may look something like this:
 
-  ![profile-configuration]({{< ref "/img/azureAD/profile-configuration-1.png">}})
+  {{< img src="/img/azureAD/profile-configuration-1.png" alt="Profile Configuration" >}}
 
   - The well-known endpoint URL is created by Azure and can be located by selecting Endpoints on their site
 
-  ![endpoints]({{< ref "/img/azureAD/endpoints-11.png" >}})
+  {{< img src="/img/azureAD/endpoints-11.png" alt="Endpoints" >}}
 
 4. Test that it works:
    From the browser call `http://localhost:3000/auth/{PROFILE-NAME-IN-TIB}/openid-connect`
@@ -56,32 +56,32 @@ the dashboard. When creating your User Group, one can also select and adjust the
 
 In the Advanced Settings of the Provider Configuration, you can select the scopes you would like your request to include. By default, Tyk will provide the connectid scope, anything additional must be requested. 
 
-![profile-configuration-additional-options]({{< ref "/img/azureAD/additional-options.png">}})
+{{< img src="/img/azureAD/additional-options.png" alt="Profile Configuration - Additional Options" >}}
 
-![profile-configuration-raw-editor]({{< ref "/img/azureAD/raw-editor.png">}})
+{{< img src="/img/azureAD/raw-editor.png" alt="Profile Configuration - Raw-editor" >}}
 
 For debugging purposes, you can find an example we created using the OpenID Connect playground.
 1. Add the redirect url found on the OpenID Connect site to the redirect urls found under the Web section
 
-![additional-url-added]({{< ref "/img/azureAD/openid_connect/additional_redirect_url.png">}})
+{{< img src="/img/azureAD/openid_connect/additional_redirect_url.png" alt="Additional URL Added" >}}
 2. Copy the OpenID Connect endpoint
 3. On the OpenID Connect site select Edit. In the Server Template dropdown menu select the Custom option and paste the endpoint in the Discovery Document URL. 
 4. Press the Use Discovery Document button and this will autofill Authorization Token Endpoint, Token Endpoint, and Token Keys Endpoint
 5. Copy and paste the Client ID and Client Secret. Scope is autofilled for you and save the configuration.
 
-![openid-connect-step-1]({{< ref "/img/azureAD/openid_connect/step-1.png">}})
+{{< img src="/img/azureAD/openid_connect/step-1.png" alt="OpenID Connect Step 1" >}}
 6. Press start and if done correctly, this should prompt you to sign in to your Azure account.
 
-![openid-connect-step-2]({{< ref "/img/azureAD/openid_connect/step-2.png">}})
+{{< img src="/img/azureAD/openid_connect/step-2.png" alt="OpenID Connect Step 2" >}}
 7. You should then be redirected back to OpenID Connect where you'll be shown the Exchange Code. This needs to be turned into an access token. Press the exchange button under the request and then press Next.
 
-![openid-connect-step-3]({{< ref "/img/azureAD/openid_connect/step-3.png">}})
-![openid-connect-step-4]({{< ref "/img/azureAD/openid_connect/step-4.png">}})
+{{< img src="/img/azureAD/openid_connect/step-3.png" alt="OpenID Connect Step 3" >}}
+{{< img src="/img/azureAD/openid_connect/step-4.png" alt="OpenID Connect Step 4" >}}
 8. We can then verify this by pressing the verify button. We can also view the information or scope of what is being returned by heading to jwt.io and viewing the payload: data there.
 
-![openid-connect-step-5]({{< ref "/img/azureAD/openid_connect/step-5.png">}})
+{{< img src="/img/azureAD/openid_connect/step-5.png" alt="OpenID Connect Step 5" >}}
 9. We are given an object with key, value pairs and we can pass in the key ie. name to our Custom User Group and the value of to our Identity Provider Role in our Tyk dashboard as shown in the example above. 
 
-![openid-connect-step-6]({{< ref "/img/azureAD/openid_connect/step-6.png">}})
+{{< img src="/img/azureAD/openid_connect/step-6.png" alt="OpenID Connect Step 6" >}}
 
 To try this yourself, we have included the link: https://openidconnect.net/
