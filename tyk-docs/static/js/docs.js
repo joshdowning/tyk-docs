@@ -153,7 +153,7 @@ $(document).ready(function(e){
 		});   
 	};
 
-	$('[class^="language"]').copyToClipboard();
+	$('code[class^="language"]:not(.language-diff)').copyToClipboard();
 
 //Handle header hyperlinks
 	$('.wysiwyg').find('h2, h3, h4, h5').hover(function () {
