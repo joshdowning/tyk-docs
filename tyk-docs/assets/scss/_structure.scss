@@ -42,6 +42,12 @@ body {
     overflow-y: scroll;
     overflow-x: hidden;
 
+    .edit-button {
+        max-width: 1300px;
+        margin-inline: auto;
+        text-indent: 10px;
+    }
+
     .hasSidebar & {
         width: 80%;
         padding-left: 30px;
@@ -50,12 +56,12 @@ body {
         @include breakpoint(large) {
           padding-inline-end: var(--main-inline-padding);
         }
-    }
 
-    .edit-button {
-      max-width: 1300px;
-      margin-inline: auto;
-      text-indent: 10px;
+        .edit-button {
+          max-width: unset;
+          margin-inline: unset;
+          text-indent: 0;
+        }
     }
 
     .wysiwyg a:not(.button) {
