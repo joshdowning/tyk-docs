@@ -2,25 +2,29 @@
 title: Upgrading Tyk
 weight: 251
 menu:
-    main:
-        parent: "FAQ"
+  main:
+    parent: "FAQ"
 ---
 
 ## Introduction
-Follow the instructions relevant to your Tyk setup to upgrade your Tyk components.
-Note: Upgrading Tyk will not overwrite your configuration files.  However, it is especially good practice to routinely back these files up, especially right before upgrading your software.
 
-## Tyk Cloud 
+Follow the instructions relevant to your Tyk setup to upgrade your Tyk components.
+Note: Upgrading Tyk will not overwrite your configuration files. However, it is especially good practice to routinely back these files up, especially right before upgrading your software.
+
+## Tyk Cloud
+
 Tyk Cloud users manage Tyk deployments themselves via the Tyk Cloud Console.
-Please visit [here]({{< ref "tyk-cloud/environments-&-deployments//managing-control-planes/#edit-control-planes" >}}) to learn more!
-   
+Please visit [here]({{< ref "tyk-cloud/environments-and-deployments//managing-control-planes/#edit-control-planes" >}}) to learn more!
+
 ## Tyk Multi-Cloud Gateway
+
 We recommend you upgrade your Tyk Multi-Cloud Gateway in the following way:
 
- 1. Take a backup of your `tyk.conf` and `start.sh` files. This is important if you have modified your Docker Container in your current version.
- 2. Re-run the start.sh script:
+1.  Take a backup of your `tyk.conf` and `start.sh` files. This is important if you have modified your Docker Container in your current version.
+2.  Re-run the start.sh script:
 
 ### For MacOS Users
+
 From a Terminal:
 
 ```{.copyWrapper}
@@ -28,7 +32,9 @@ curl "https://raw.githubusercontent.com/lonelycode/tyk-hybrid-docker/master/star
 chmod +x start.sh
 ./start.sh [PORT] [TYK-SECRET] [RPC-CREDENTIALS] [API CREDENTIALS]
 ```
+
 ### For Linux Users
+
 ```{.copyWrapper}
 wget https://raw.githubusercontent.com/lonelycode/tyk-hybrid-docker/master/start.sh
 chmod +x start.sh
@@ -38,20 +44,22 @@ sudo ./start.sh [PORT] [TYK-SECRET] [RPC-CREDENTIALS] [API CREDENTIALS]
 This command will start the Docker container and be ready to proxy traffic (you will need to check the logs of the container to make sure the login was successful).
 
 #### Parameters:
-*   `PORT`: The port for Tyk to listen on (usually 8080).
-*   `TYK-SECRET`: The secret key to use so you can interact with your Tyk node via the REST API.
-*   `RPC-CREDENTIALS`: Your **Organisation ID**. This can be found from the System Management > Users section from the Dashboard. Click **Edit** on a User to view the Organisation ID.
-*   `API-CREDENTIALS`: Your **Tyk Dashboard API Access Credentials**. This can be found from the System Management > Users section from the Dashboard. Click **Edit** on a User to view the Tyk Dashboard API Access Credentials. {{< img src="/img/dashboard/system-management/api_access_cred_2.5.png" alt="API key location" >}}
+
+- `PORT`: The port for Tyk to listen on (usually 8080).
+- `TYK-SECRET`: The secret key to use so you can interact with your Tyk node via the REST API.
+- `RPC-CREDENTIALS`: Your **Organisation ID**. This can be found from the System Management > Users section from the Dashboard. Click **Edit** on a User to view the Organisation ID.
+- `API-CREDENTIALS`: Your **Tyk Dashboard API Access Credentials**. This can be found from the System Management > Users section from the Dashboard. Click **Edit** on a User to view the Tyk Dashboard API Access Credentials. {{< img src="/img/dashboard/system-management/api_access_cred_2.5.png" alt="API key location" >}}
 
 #### Check everything is working
 
 To check if the node has connected and logged in, use the following command:
+
 ```{.copyWrapper}
 sudo docker logs --tail=100 --follow tyk_hybrid
 ```
 
-  
 This will show you the log output of the Multi-Cloud container, if you don't see any connectivity errors, and the log output ends something like this:
+
 ```
 time="Jul  7 08:15:03" level=info msg="Gateway started (vx.x.x.x)"
 time="Jul  7 08:15:03" level=info msg="--> Listening on port: 8080"
@@ -71,7 +79,7 @@ Tyk is compatible with a blue-green or rolling update strategy.
 
 For a single machine installation, you should follow the instructions below for your operating system.
 
-Our repositories will be updated at [https://packagecloud.io/tyk](https://packagecloud.io/tyk) when new versions are released. As you set up these repositories when installing Tyk to upgrade all Tyk components  you can run:
+Our repositories will be updated at [https://packagecloud.io/tyk](https://packagecloud.io/tyk) when new versions are released. As you set up these repositories when installing Tyk to upgrade all Tyk components you can run:
 
 ### For Ubuntu
 
@@ -80,11 +88,13 @@ sudo apt-get update && sudo apt-get upgrade
 ```
 
 ### For RHEL
+
 ```{.copyWrapper}
 sudo yum update
 ```
+
 {{< note success >}}
-**Note**  
+**Note**
 
 For the Tyk Gateway before v2.5 and Tyk Dashboard before v1.5 there's a known Red Hat bug with init scripts being removed on package upgrade. In order to work around it, it's required to force reinstall the packages, e.g.:
 `sudo yum reinstall tyk-gateway tyk-dashboard`
@@ -125,5 +135,5 @@ We have a [migration tool]({{< ref "/content/planning-for-production/database-se
 
 Get started now, for free, or contact us with any questions.
 
-* [Get Started](https://tyk.io/pricing/compare-api-management-platforms/#get-started)
-* [Contact Us](https://tyk.io/about/contact/)
+- [Get Started](https://tyk.io/pricing/compare-api-management-platforms/#get-started)
+- [Contact Us](https://tyk.io/about/contact/)
