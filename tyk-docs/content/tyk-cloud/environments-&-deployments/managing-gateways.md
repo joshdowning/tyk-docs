@@ -15,11 +15,9 @@ aliases:
 
 Edge Gateways do all the heavy lifting of actually managing your requests: traffic proxying, access control, data transformation, logging and more.
 
-
 ## Prerequisites
 
-All [user roles]({{< ref "tyk-cloud/teams-&-users/user-roles" >}}) can edit, deploy, undeploy, restart, redeploy all deployments within a team. Only the Organisation Admin and the Team Admin can create or delete deployments.
-
+All [user roles]({{< ref "tyk-cloud/teams-and-users/user-roles" >}}) can edit, deploy, undeploy, restart, redeploy all deployments within a team. Only the Organisation Admin and the Team Admin can create or delete deployments.
 
 ## Adding a new Edge Gateway
 
@@ -29,7 +27,7 @@ Watch our video on setting up a Control Plane and an Edge Gateway.
 
 {{< note success >}}
 **Note**
-  
+
 The number of Edge Gateways you can add is dependent on your [plan]({{< ref "tyk-cloud/account-billing/plans" >}})
 {{< /note >}}
 
@@ -43,14 +41,15 @@ The number of Edge Gateways you can add is dependent on your [plan]({{< ref "tyk
 ## Edit Edge Gateways
 
 You can edit the following Control Plane settings:
-* Change the Gateway name
-* Add a [custom domain]({{< ref "tyk-cloud/using-custom-domains" >}})
-* Change the Bundle Channel and Bundle Version
-* Enable [plugins]({{< ref "tyk-cloud/using-plugins" >}})
+
+- Change the Gateway name
+- Add a [custom domain]({{< ref "tyk-cloud/using-custom-domains" >}})
+- Change the Bundle Channel and Bundle Version
+- Enable [plugins]({{< ref "tyk-cloud/using-plugins" >}})
 
 {{< note success >}}
 **Note**
-  
+
 The use of custom domains is dependent on your [plan]({{< ref "tyk-cloud/account-billing/plans" >}})
 {{< /note >}}
 
@@ -60,7 +59,6 @@ To edit an existing Edge Gateway:
 2. Select **Edit** from the Deployed drop-down list
 
 {{< img src="/img/admin/cp-edit.png" alt="Edge drop-down" >}}
-
 
 ## Upgrade Edge Gateways
 
@@ -75,10 +73,11 @@ To upgrade an existing Edge Gateway:
 
 {{< img src="/img/admin/cp-edge-upgrade-version.png" alt="Bundle version drop-down" >}}
 
-4. To apply your changes, click the **"Save and Re-Deploy"** button located at the top right. After a few seconds, you will be redirected to the overview page of the Control Plane and a **"Deploying"** indicator button will appear. 
+4. To apply your changes, click the **"Save and Re-Deploy"** button located at the top right. After a few seconds, you will be redirected to the overview page of the Control Plane and a **"Deploying"** indicator button will appear.
 
 {{< img src="/img/admin/cp-edge-upgrade-deploying.png" alt="Deploying notification" >}}
 
 5. A **"Deployed"** button indicates a successful upgrade.
 
 {{< img src="/img/admin/cp-edge-upgrade-deployed.png" alt="Deployed notification" >}}
+

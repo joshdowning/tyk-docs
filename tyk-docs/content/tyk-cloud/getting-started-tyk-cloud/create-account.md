@@ -20,15 +20,15 @@ You can use Tyk Cloud to manage your APIs effectively and with minimal effort. T
 
 When you create your Tyk Cloud account, we do the following for you:
 
-* Assign the account creator as a [Billing admin]({{< ref "/content/tyk-cloud/teams-&-users/user-roles.md" >}}) for the Organisation. This user role allows you to manage the billing and plans for your org. You can also add other billing admins as required.
-* Assign the new account to our [free 14 day Tyk Cloud trial plan]({{< ref "tyk-cloud/account-billing/plans#14-day-trial" >}})
+- Assign the account creator as a [Billing admin]({{< ref "/content/tyk-cloud/teams-and-users/user-roles.md" >}}) for the Organisation. This user role allows you to manage the billing and plans for your org. You can also add other billing admins as required.
+- Assign the new account to our [free 14 day Tyk Cloud trial plan]({{< ref "tyk-cloud/account-billing/plans#14-day-trial" >}})
 
 ## Creating your first account
 
 [Start here](https://account.cloud-ara.tyk.io/signup).
 
-* To create your account, you will have to fill in first-level details like your first name, last name and email.
-* Then, set up a password for your Tyk Cloud account.
-* Following that check the box at the bottom of the page to confirm that you have read and accepted our [Terms and Conditions](https://tyk.io/software-as-a-service-agreement/).
-* Finally, click **Create new account**
-* After completing the Account Creation form, click **Start Organisation Setup**.
+- To create your account, you will have to fill in first-level details like your first name, last name and email.
+- Then, set up a password for your Tyk Cloud account.
+- Following that check the box at the bottom of the page to confirm that you have read and accepted our [Terms and Conditions](https://tyk.io/software-as-a-service-agreement/).
+- Finally, click **Create new account**
+- After completing the Account Creation form, click **Start Organisation Setup**.

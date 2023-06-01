@@ -11,17 +11,17 @@ aliases:
 
 ## Introduction
 
-The following [user roles]({{< ref "/content/tyk-cloud/teams-&-users/user-roles.md" >}}) can perform existing User Admin tasks:
+The following [user roles]({{< ref "/content/tyk-cloud/teams-and-users/user-roles.md" >}}) can perform existing User Admin tasks:
 
-* [Organisation Admin]({{< ref "/content/tyk-cloud/teams-&-users/user-roles.md#user-roles-within-tyk-cloud" >}}) - Can manage all users in the organisation they are a member of.
-* [Team Admin]({{< ref "/content/tyk-cloud/teams-&-users/user-roles.md#user-roles-within-tyk-cloud" >}}) - Can only manage the users of the team they are a member of.
+- [Organisation Admin]({{< ref "/content/tyk-cloud/teams-and-users/user-roles.md#user-roles-within-tyk-cloud" >}}) - Can manage all users in the organisation they are a member of.
+- [Team Admin]({{< ref "/content/tyk-cloud/teams-and-users/user-roles.md#user-roles-within-tyk-cloud" >}}) - Can only manage the users of the team they are a member of.
 
 {{< note success >}}
 **Note**
 
 Organisation Admins, Team Admins and Team Members are responsible for managing the Tyk Cloud organisation hierarchy and deploying/managing stacks, as well as having access to the Tyk Dashboard to manage APIs. Users of Tyk Cloud are usually DevOps, Architects and sometimes Engineers or Managers.
 
-You can also [add users to the Tyk Dashboard]({{< ref "basic-config-and-security/security/dashboard/create-users" >}}) itself instead of inviting them as Tyk Cloud users. These users would likely be your API Developers and Engineers who manage the APIs. 
+You can also [add users to the Tyk Dashboard]({{< ref "basic-config-and-security/security/dashboard/create-users" >}}) itself instead of inviting them as Tyk Cloud users. These users would likely be your API Developers and Engineers who manage the APIs.
 {{< /note >}}
 
 ### Invite a new user to your team
@@ -35,8 +35,8 @@ You can also [add users to the Tyk Dashboard]({{< ref "basic-config-and-security
 1. Select the team with the user you want to edit.
 2. Click the user name from the team user list.
 3. You can change the following details
-   * Change the team they are a member of.
-   * Change the user role assigned to them.
+   - Change the team they are a member of.
+   - Change the user role assigned to them.
 4. Click Save to update the user info.
 
 ### Delete a User
