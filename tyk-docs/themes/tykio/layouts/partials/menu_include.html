@@ -9,7 +9,6 @@
 {{ $menu := slice }}
 {{ range .Site.Data.menu.menu }}
   {{ $rootMenu := .menu }}
-
   {{ $path := replace .path "/" "" }}
   {{ if eq $path $pagePath }}
     {{ $menu = $rootMenu }}
