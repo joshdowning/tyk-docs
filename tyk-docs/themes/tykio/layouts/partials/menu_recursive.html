@@ -1,5 +1,6 @@
 {{ $page := .page }}
 {{ $site := .site }}
+{{ $showEmptyPages := $site.Params.showEmptyPages }}
 
 {{ $pagePath := replace $page.RelPermalink "/docs" "" }}
 {{ $pagePath := replace $pagePath "/nightly" "" }}
@@ -41,7 +42,7 @@
     {{ end }}
   {{ end }}
 
-  {{ if (isset . "menu") }} 
+  {{ if (isset . "menu") }}
     <li class="category-{{.category}} {{if $is}} active {{end}} {{ if or $is $has (eq .category `Label`)}} st-open {{else}} st-collapsed {{end}}">
       {{ if .path }}
       {{ $prefixPath := strings.TrimLeft "/" .path }} 
@@ -55,9 +56,10 @@
         {{ partial "menu_recursive.html" (dict "menu" .menu "page" $page "site" $site) }}
     </li>
   {{ else }}
-    <li class="st-file {{if $is}} active {{end}} ">
+    {{if or (.path) ($showEmptyPages) }}
+    <li class="{{if not .path}} paint-red {{end}} st-file {{if $is}} active {{end}} ">
       {{ $prefixPath := strings.TrimLeft "/" .path }} 
-      <a href="{{ $prefixPath | relURL }}"  {{if not .path}}style="border: 1px solid red"{{end}}>
+      <a href="{{ $prefixPath | relURL }}"  >
         {{ .title }}
       </a>
 
@@ -65,6 +67,7 @@
         {{ warnf "Found page without path %q" .title }}
       {{end}}
     </li>
+    {{ end }}
   {{ end }}
 {{ end }}
 </ul>

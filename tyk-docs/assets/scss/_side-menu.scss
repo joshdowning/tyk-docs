@@ -201,7 +201,7 @@ Tree View
                 letter-spacing: initial;
             }
 
-            &:not(:has(li)) a {
+            &:not(:has(li)) {
               border: 1px solid red;
             }
         }
@@ -267,6 +267,10 @@ Tree View
     background-position: center;
     background-size: contain;
 }
+.paint-red{
+    border: 1px solid red;
+}
+
 
 .no-icons {
     .st-treed>ul>li {
