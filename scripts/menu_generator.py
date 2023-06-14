@@ -386,8 +386,10 @@ def process_show_status(nodeList) -> bool:
         category = node.get("category")
         children = node.get("children", [])
 
-        if category == "Page":  # and show is None:
-            node["show"] = True
+        if category == "Page":
+            show = node.get("show")
+            if show is None:
+                node["show"] = True
             found = True
         elif category == "Directory":
             node["show"] = process_show_status(children)
