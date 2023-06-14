@@ -91,14 +91,17 @@ with open(urlcheck_path, "r") as file:
             continue
 
         title = obj.get("title")
-        #linktitle = obj.get("linktitle")
+        # linktitle = obj.get("linktitle")
 
         # if title and link title are empty
         # log to file and continue to next row in urlcheck.json
         # if only title is empty then title = linktitle and
         # replace trailing slash
         if title is None or title == "":
-            print(f"no title, check for linktitle. {line.strip()}, ", file=openUrlCheckNoTitle)
+            print(
+                f"no title, check for linktitle. {line.strip()}, ",
+                file=openUrlCheckNoTitle,
+            )
 
             linktitle = obj.get("linktitle")
             if linktitle is None:
@@ -198,6 +201,9 @@ with open(categories_path, "r") as file:
                 new_node = {"name": name, "category": category, "children": []}
                 if category == "Tab":
                     new_node["url"] = tabURLs[name]
+
+                if category == "Page":
+                    new_node["show"] = False
 
                 # if category == "Page":
                 #   filename1 = new_node["name"].replace(" ", "-")
@@ -314,8 +320,8 @@ def print_tree_as_yaml(tree, level=1):
                 title = title_map[node["url"].replace("/", "")]
             except:
                 title = "Unknown url: " + node["url"]
-                #print(f"node[url] = {'https://tyk.io/docs' + node['url']},  node['name'] = {node['name']}")
-                print( 
+                # print(f"node[url] = {'https://tyk.io/docs' + node['url']},  node['name'] = {node['name']}")
+                print(
                     "Unknown menu url:" " https://tyk.io/docs" + node["url"],
                     file=openUnknownUrlFile,
                 )
@@ -324,15 +330,75 @@ def print_tree_as_yaml(tree, level=1):
 
         yaml_string += "  " * level + '- title: "' + title + '"\n'
 
-        yaml_string += (
-            "  " * level + "  path: " + node["url"] + "\n" if "url" in node else ""
-        )
+        # "Config reference"
+        # {'name': 'Config reference', 'category': 'Page', 'url': '/some-path', 'children': [{'url': '/tyk-environment-variables', 'name': '', 'category': 'Page', 'children': []}]}
+        #
+        # the script does not catch the above scenario
+        #
+        # display the path
+        if (
+            node["category"] == "Page"
+            and len(node["children"]) == 1
+            and "url" in node["children"][0]
+            and node["children"][0]["category"] == "Page"
+        ):
+            yaml_string += "  " * level + "  path: " + node["children"][0]["url"] + "\n"
+        else:
+            yaml_string += (
+                "  " * level + "  path: " + node["url"] + "\n" if "url" in node else ""
+            )
+
+        # display the category
         yaml_string += "  " * level + "  category: " + node["category"] + "\n"
+
+        # display show status
+        yaml_string += (
+            "  " * level + "  show: " + str(node["show"]) + "\n"
+            if "show" in node
+            else ""
+        )
+
         if node["category"] != "Page":
             yaml_string += "  " * level + "  menu:\n"
             yaml_string += print_tree_as_yaml(node["children"], level + 1)
+        # else:
+        #     if node["category"] == "Page" and len(node["children"]) == 0:
+        #         print(
+        #             f"PAGE WITH CHILDREN : name={node['name']},url={node['children'][0]['url']}"
+        #         )
     return yaml_string
 
+
+def process_show_status(nodeList) -> bool:
+    """
+    Add show flag for Page and Driectory nodes.
+    If there is no show key in the dictionary then it has
+    not been explictly set to to false because a mapping was
+    not found in the data-bank file. For pages this means writes
+    set the show status to true.
+    Directories are processed recursively. If a directory contains
+    a page that has show set to true it will have a show attribute
+    set to true.
+    """
+    found = False
+
+    for node in nodeList:
+        category = node.get("category")
+        children = node.get("children", [])
+
+        if category == "Page":  # and show is None:
+            node["show"] = True
+            found = True
+        elif category == "Directory":
+            node["show"] = process_show_status(children)
+            found = node["show"] or found
+        elif category == "Tab":
+            process_show_status(children)
+
+    return found
+
+
+process_show_status(tree)
 
 yaml_string = "menu:\n"
 yaml_string += print_tree_as_yaml(tree)
