@@ -200,10 +200,6 @@ Tree View
                 font-weight: bold;
                 letter-spacing: initial;
             }
-
-            &:not(:has(li)) {
-              border: 1px solid red;
-            }
         }
     }
 
@@ -268,7 +264,7 @@ Tree View
     background-size: contain;
 }
 .paint-red{
-    border: 1px solid red;
+    border: 1px solid red!important;
 }
 
 
