@@ -58,10 +58,10 @@
     </li>
     {{ end }}
   {{ else }}
-    {{if or (.path) ($showEmptyPages) }}
+    {{if or (.show) ($showEmptyPages) }}
     <li class="st-file {{if $is}} active {{end}} ">
       {{ $prefixPath := strings.TrimLeft "/" .path }} 
-      <a href="{{ $prefixPath | relURL }}" class="{{if not .path}} paint-red {{end}}"  >
+      <a href="{{ $prefixPath | relURL }}" class="{{if not .show}} paint-red {{end}}"  >
         {{ .title }}
       </a>
 
