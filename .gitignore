@@ -1,6 +1,7 @@
 tyk-docs/public
 .DS_Store
 .idea/
+*.csv
 *.swp
 *.plist
 *.test
@@ -10,3 +11,4 @@ resources
 .vscode/launch.json*
 check-pages-*.txt
 .venv/
+Makefile

@@ -11,7 +11,7 @@ menu:
       path: /frequently-asked-questions/sla-policies
       category: Page
       show: True
-  - title: "Deployment and Operations"
+  - title: "Deploying Tyk"
     path: /apim
     category: Tab
     menu:
@@ -19,7 +19,7 @@ menu:
       path: /apim
       category: Page
       show: False
-    - title: "Quick start guides"
+    - title: "Quick Start Guides"
       category: Directory
       show: False
       menu:
@@ -28,11 +28,13 @@ menu:
       show: False
       menu:
       - title: "Overview"
-        category: 
+        category: Directory
+        show: True
         menu:
         - title: "Tyk Open Source"
           path: /apim/open-source
           category: Page
+          show: True
       - title: "Getting Started"
         category: Page
         show: False
@@ -139,7 +141,7 @@ menu:
           path: /tyk-cloud/getting-started-tyk-cloud/to-conclude
           category: Page
           show: True
-      - title: "Day 0 - Design phase"
+      - title: "Day 0 - Planning Phase"
         category: Directory
         show: True
         menu:
@@ -204,11 +206,9 @@ menu:
       show: False
       menu:
       - title: "Overview"
-        category: 
-        menu:
-        - title: "Tyk Self-Managed"
-          path: /tyk-on-premises
-          category: Page
+        path: /tyk-on-premises
+        category: Page
+        show: False
       - title: "Getting Started"
         category: Directory
         show: True
@@ -302,7 +302,8 @@ menu:
           show: False
           menu:
           - title: "Single Region"
-            category: Label
+            category: Directory
+            show: True
             menu:
             - title: "Tyk & K8s demo"
               category: Page
@@ -313,8 +314,10 @@ menu:
             - title: "Tyk Helm Chart "
               path: /tyk-self-managed/tyk-helm-chart
               category: Page
+              show: True
           - title: "Multi Region"
-            category: Label
+            category: Directory
+            show: False
             menu:
             - title: "Kuberenetes Demo"
               category: Page
@@ -337,7 +340,7 @@ menu:
           path: /tyk-on-prem/installation/redhat-rhel-centos/dashboard
           category: Page
           show: True
-      - title: "Day 0 - Design phase"
+      - title: "Day 0 - Planning Phase"
         category: Directory
         show: False
         menu:
@@ -496,43 +499,34 @@ menu:
     - title: "Overview"
       category: Page
       show: False
-    - title: "Quick start demos"
+    - title: "Quick Start Guides"
       category: Directory
       show: True
       menu:
       - title: "Protect an API using Tyk OSS Gateway"
         category: Page
         show: False
-      - title: "Securely deploy a REST API (Dashboard)"
+      - title: "Securely deploy a REST API"
         category: Page
         show: False
-      - title: "OpenAPI Spec operations (Dashboard)"
+      - title: "OpenAPI Specification"
         category: Page
         show: False
       - title: "Publish your first API through the Developer Portal"
         category: Page
         show: False
-      - title: "Add a Kafka data source (UDG)"
+      - title: "Add a Kafka data source"
         category: Page
         show: False
-      - title: "Getting Started"
-        path: /getting-started
+      - title: "Tyk Local Demo library"
         category: Page
-        show: True
+        show: False
       - title: "Install"
         path: /getting-started/installation
         category: Page
         show: True
       - title: "Quick Start"
         path: /getting-started/quick-start
-        category: Page
-        show: True
-      - title: "Quick Start in Docker"
-        path: /getting-started/quick-start/tyk-demo
-        category: Page
-        show: True
-      - title: "Quick Start in Kubernetes"
-        path: /getting-started/quick-start/tyk-k8s-demo
         category: Page
         show: True
     - title: "Core API Management"
@@ -700,7 +694,7 @@ menu:
         show: False
       - title: "Data Graph Design"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Design UDG schemas / APIs"
           category: Page
@@ -708,11 +702,7 @@ menu:
         - title: "Manage data sources"
           category: Page
           show: False
-        - title: "UDG Examples"
-          path: /universal-data-graph/udg-examples
-          category: Page
-          show: True
-      - title: "Data Graph management"
+      - title: "Data Graph Management"
         category: Directory
         show: False
         menu:
@@ -758,66 +748,50 @@ menu:
         category: Directory
         show: True
         menu:
-        - title: "OAS API definition"
+        - title: "Open API Specification"
           category: Directory
-          show: True
+          show: False
           menu:
-          - title: "OAS API Versioning"
-            path: /getting-started/key-concepts/oas-versioning
-            category: Page
+          - title: "Basic concepts"
+            category: Directory
             show: True
-          - title: "Tyk OAS API definition"
-            path: /getting-started/key-concepts/openapi-specification
-            category: Page
+            menu:
+            - title: "OpenAPI High Level Concepts"
+              path: /getting-started/key-concepts/high-level-concepts
+              category: Page
+              show: True
+            - title: "Tyk OAS API definition"
+              path: /getting-started/key-concepts/openapi-specification
+              category: Page
+              show: True
+          - title: "Advanced concepts"
+            category: Directory
             show: True
-          - title: "Servers"
-            path: /getting-started/key-concepts/servers
-            category: Page
-            show: True
-          - title: "Using OAS API Definitions"
-            path: /getting-started/using-oas-definitions
-            category: Page
-            show: True
-          - title: "Create an OAS API"
-            path: /getting-started/using-oas-definitions/create-an-oas-api
-            category: Page
-            show: True
-          - title: "Export an OAS API"
-            path: /getting-started/using-oas-definitions/export-an-oas-api
-            category: Page
-            show: True
-          - title: "Get started with OAS and VS Code"
-            path: /getting-started/using-oas-definitions/get-started-oas
-            category: Page
-            show: True
-          - title: "Import an OAS API"
-            path: /getting-started/using-oas-definitions/import-an-oas-api
-            category: Page
-            show: True
-          - title: "Mock Response"
-            path: /getting-started/using-oas-definitions/mock-response
-            category: Page
-            show: True
-          - title: "Moving to OAS from Tyk Classic APIs"
-            path: /getting-started/using-oas-definitions/moving-to-oas
-            category: Page
-            show: True
-          - title: "OAS Glossary"
-            path: /getting-started/using-oas-definitions/oas-glossary
-            category: Page
-            show: True
-          - title: "OAS Reference"
-            path: /getting-started/using-oas-definitions/oas-reference
-            category: Page
-            show: True
-          - title: "Update existing Tyk API with changes in your OpenAPI definition"
-            path: /getting-started/using-oas-definitions/update-api-with-oas
-            category: Page
-            show: True
-          - title: "Versioning an OAS API"
-            path: /getting-started/using-oas-definitions/versioning-an-oas-api
-            category: Page
-            show: True
+            menu:
+            - title: "Authentication"
+              path: /getting-started/key-concepts/authentication
+              category: Page
+              show: True
+            - title: "OpenAPI Low Level Concepts"
+              path: /getting-started/key-concepts/low-level-concepts
+              category: Page
+              show: True
+            - title: "OAS API Versioning"
+              path: /getting-started/key-concepts/oas-versioning
+              category: Page
+              show: True
+            - title: "Paths"
+              path: /getting-started/key-concepts/paths
+              category: Page
+              show: True
+            - title: "Request Validation"
+              path: /getting-started/key-concepts/request-validation
+              category: Page
+              show: True
+            - title: "Servers"
+              path: /getting-started/key-concepts/servers
+              category: Page
+              show: True
         - title: "GraphQL"
           category: Directory
           show: True
@@ -934,16 +908,8 @@ menu:
           path: /getting-started/key-concepts
           category: Page
           show: True
-        - title: "Paths"
-          path: /getting-started/key-concepts/paths
-          category: Page
-          show: True
         - title: "Rate Limiting in Tyk"
           path: /getting-started/key-concepts/rate-limiting
-          category: Page
-          show: True
-        - title: "Request Validation"
-          path: /getting-started/key-concepts/request-validation
           category: Page
           show: True
         - title: "Session Metadata"
@@ -1456,6 +1422,10 @@ menu:
           path: /advanced-configuration/websockets
           category: Page
           show: True
+        - title: "Request Context Variables"
+          path: /context-variables
+          category: Page
+          show: True
         - title: "Log Data"
           path: /log-data
           category: Page
@@ -1538,20 +1508,8 @@ menu:
             show: True
         - title: "Tyk OAS API definition"
           category: Directory
-          show: True
+          show: False
           menu:
-          - title: "Authentication"
-            path: /getting-started/key-concepts/authentication
-            category: Page
-            show: True
-          - title: "OpenAPI High Level Concepts"
-            path: /getting-started/key-concepts/high-level-concepts
-            category: Page
-            show: True
-          - title: "OpenAPI Low Level Concepts"
-            path: /getting-started/key-concepts/low-level-concepts
-            category: Page
-            show: True
         - title: "Gateway API"
           path: /getting-started/key-concepts/gateway-api
           category: Page
@@ -1656,7 +1614,7 @@ menu:
           path: /error-response-codes
           category: Page
           show: True
-      - title: "Release notes"
+      - title: "Release Notes"
         category: Directory
         show: True
         menu:
@@ -1851,10 +1809,6 @@ menu:
         menu:
         - title: "Tyk Dashboard Admin API"
           path: /dashboard-admin-api
-          category: Page
-          show: True
-        - title: "Portal API Catalogue"
-          path: /getting-started/key-concepts/api-catalogue
           category: Page
           show: True
         - title: "Dashboard API"
@@ -2073,7 +2027,7 @@ menu:
           path: /tyk-stack/dependencies/mongodb/x509-client-auth
           category: Page
           show: True
-      - title: "Release notes"
+      - title: "Release Notes"
         category: Directory
         show: False
         menu:
@@ -2099,6 +2053,10 @@ menu:
           category: Directory
           show: True
           menu:
+          - title: "Portal API Catalogue"
+            path: /getting-started/key-concepts/api-catalogue
+            category: Page
+            show: True
           - title: "Developer Profiles"
             path: /tyk-developer-portal/tyk-portal-classic/developer-profiles
             category: Page
@@ -2466,7 +2424,7 @@ menu:
         category: Directory
         show: False
         menu:
-      - title: "Release notes"
+      - title: "Release Notes"
         category: Directory
         show: True
         menu:
@@ -2679,7 +2637,7 @@ menu:
           path: /tyk-stack/tyk-pump/useful-debug-modes
           category: Page
           show: True
-      - title: "Release notes"
+      - title: "Release Notes"
         category: Directory
         show: False
         menu:
@@ -2756,7 +2714,7 @@ menu:
         category: Directory
         show: False
         menu:
-      - title: "Release notes"
+      - title: "Release Notes"
         category: Directory
         show: False
         menu:
@@ -2849,7 +2807,7 @@ menu:
         category: Directory
         show: False
         menu:
-      - title: "Release notes"
+      - title: "Release Notes"
         category: Directory
         show: False
         menu:
@@ -2858,39 +2816,27 @@ menu:
     category: Tab
     menu:
     - title: "Overview"
+      path: /frequently-asked-questions/faq
       category: Page
       show: False
-    - title: "Tyk APIs reference"
+    - title: "Tyk APIs Reference"
       category: Directory
-      show: True
+      show: False
       menu:
-      - title: "Tyk APIs"
-        path: /tyk-apis
-        category: Page
-        show: True
     - title: "SDK"
       category: Hide
       menu:
     - title: "CLI"
       category: Hide
       menu:
-    - title: "Config reference"
-      path: /tyk-environment-variables
+    - title: "Configuration Reference"
       category: Page
       show: False
-    - title: "Debugging series"
+    - title: "Debugging Series"
       category: Directory
-      show: True
+      show: False
       menu:
-      - title: "Debugging Series"
-        path: /debugging-series/debugging-series
-        category: Page
-        show: True
-      - title: "MongoDB Debugging"
-        path: /debugging-series/mongodb-debugging
-        category: Page
-        show: True
-    - title: "Performance benchmarketing"
+    - title: "Performance Benchmarking"
       category: Directory
       show: False
       menu:
@@ -2922,41 +2868,51 @@ menu:
         path: /frequently-asked-questions/datadog-logs-showup-as-errors
         category: Page
         show: True
-    - title: "Marketplace of plugin, dev repositories and code snippet"
+    - title: "Marketplace of plugin, dev repositories and code snippets"
       category: Page
       show: False
-    - title: "Tyk release summary"
+    - title: "Tyk Release Summary"
       category: Page
       show: False
     - title: "Contribute to Tyk Docs"
       path: /contribute
       category: Page
       show: False
-  - title: "APIM Best Practices"
+    - title: "Config reference"
+      path: /tyk-environment-variables
+      category: Page
+      show: False
+  - title: "APIM Best Practice"
     path: /getting-started/key-concepts
     category: Tab
     menu:
     - title: "Overview"
       category: Page
       show: False
-    - title: "API security best practice"
+    - title: "API Security Best Practice"
       category: Page
       show: False
-    - title: "FLAPIM best practice"
+    - title: "API Lifecycle Best Practice"
       category: Page
       show: False
-    - title: "API architectural patterns"
+    - title: "API Platform Architectures"
       category: Page
       show: False
-    - title: "Sector specific guides"
+    - title: "Sector Specific Guides"
+      category: Page
+      show: False
+    - title: "API Observability"
+      category: Page
+      show: False
+    - title: "API Products"
       category: Page
       show: False
     - title: "APIs as integration"
       category: Page
       show: False
     - title: "Creating a PoC"
-      category: Page
-      show: False
+      category: Hide
+      menu:
     - title: "Deploy Tyk OSS using new Helm Chart"
       path: /tyk-oss/ce-helm-chart-new/
       category: Page
@@ -3089,6 +3045,10 @@ menu:
       path: /troubleshooting/tyk-cloud/
       category: Page
       show: True
+    - title: "Getting Started"
+      path: /getting-started/
+      category: Page
+      show: True
     - title: "Managing APIs"
       path: /tyk-cloud/environments--deployments/managing-apis/
       category: Page
@@ -3127,10 +3087,6 @@ menu:
       show: True
     - title: "Response Plugins"
       path: /plugins/plugin-types/response-plugins/
-      category: Page
-      show: True
-    - title: "FAQ"
-      path: /frequently-asked-questions/faq/
       category: Page
       show: True
     - title: "Analytics Plugins"
