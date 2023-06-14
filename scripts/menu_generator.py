@@ -361,11 +361,6 @@ def print_tree_as_yaml(tree, level=1):
         if node["category"] != "Page":
             yaml_string += "  " * level + "  menu:\n"
             yaml_string += print_tree_as_yaml(node["children"], level + 1)
-        # else:
-        #     if node["category"] == "Page" and len(node["children"]) == 0:
-        #         print(
-        #             f"PAGE WITH CHILDREN : name={node['name']},url={node['children'][0]['url']}"
-        #         )
     return yaml_string
 
 
@@ -390,10 +385,12 @@ def process_show_status(nodeList) -> bool:
             show = node.get("show")
             if show is None:
                 node["show"] = True
-            found = True
+                found = True
+            else:
+                found = False
         elif category == "Directory":
             node["show"] = process_show_status(children)
-            found = node["show"] or found
+            found = node["show"] and found
         elif category == "Tab":
             process_show_status(children)
 

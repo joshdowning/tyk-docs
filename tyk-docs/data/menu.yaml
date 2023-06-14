@@ -25,7 +25,7 @@ menu:
       menu:
     - title: "Tyk Open Source API Gateway"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: 
@@ -85,7 +85,7 @@ menu:
         show: False
     - title: "Tyk Cloud Platform"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: Page
@@ -182,7 +182,7 @@ menu:
           show: True
       - title: "Day 2 - Operations"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Manage, audit and govern cloud infrastructure"
           category: Page
@@ -201,7 +201,7 @@ menu:
           show: False
     - title: "Tyk Self Managed"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: 
@@ -339,7 +339,7 @@ menu:
           show: True
       - title: "Day 0 - Design phase"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Design for high availability and performance"
           category: Page
@@ -537,7 +537,7 @@ menu:
         show: True
     - title: "Core API Management"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: Page
@@ -573,7 +573,7 @@ menu:
           show: True
       - title: "Deploy APIs"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Follow governance for APIs"
           category: Page
@@ -589,7 +589,7 @@ menu:
           show: False
       - title: "API Operations"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Version APIs"
           category: Page
@@ -605,7 +605,7 @@ menu:
         show: False
     - title: "Publish API Products"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: Page
@@ -652,7 +652,7 @@ menu:
           show: True
       - title: "API Publishing"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Publish APIs to the portal"
           category: Page
@@ -671,7 +671,7 @@ menu:
           show: False
       - title: "API Consumer access"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Enable consumers to access API Products"
           category: Page
@@ -693,7 +693,7 @@ menu:
           menu:
     - title: "UDG TBC"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: Page
@@ -714,7 +714,7 @@ menu:
           show: True
       - title: "Data Graph management"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Define access to UDG APIs"
           category: Page
@@ -733,11 +733,11 @@ menu:
           show: False
     - title: "GraphQL"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "GQL Federation"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Federated GraphQL"
           category: Page
@@ -976,7 +976,7 @@ menu:
           show: True
       - title: "Basic Config and Security"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Overview"
           category: Page
@@ -1669,7 +1669,7 @@ menu:
           menu:
         - title: "Release highlights and upgrades"
           category: Directory
-          show: True
+          show: False
           menu:
           - title: "[version]"
             category: Page
@@ -2075,7 +2075,7 @@ menu:
           show: True
       - title: "Release notes"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Changelog"
           category: Page
@@ -2086,7 +2086,7 @@ menu:
           menu:
         - title: "Release highlights and upgrades"
           category: Directory
-          show: True
+          show: False
           menu:
           - title: "[version]"
             category: Page
@@ -2241,7 +2241,7 @@ menu:
         show: True
     - title: "Tyk Enterprise Developer Portal"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: Page
@@ -2352,7 +2352,7 @@ menu:
           show: True
       - title: "Advanced Configurations"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Portal Customisation"
           category: Directory
@@ -2420,7 +2420,7 @@ menu:
         menu:
     - title: "Tyk Enterprise (MDCB)"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         path: /tyk-multi-data-centre
@@ -2479,7 +2479,7 @@ menu:
           menu:
         - title: "Release highlights and upgrades"
           category: Directory
-          show: True
+          show: False
           menu:
           - title: "[version]"
             category: Page
@@ -2494,7 +2494,7 @@ menu:
           show: True
     - title: "Universal Data Graph"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         path: /universal-data-graph/datasources/graphql
@@ -2681,7 +2681,7 @@ menu:
           show: True
       - title: "Release notes"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Changelog"
           category: Page
@@ -2692,7 +2692,7 @@ menu:
           menu:
         - title: "Release highlights and upgrades"
           category: Directory
-          show: True
+          show: False
           menu:
           - title: "[version]"
             category: Page
@@ -2707,7 +2707,7 @@ menu:
         show: True
     - title: "Tyk Operator"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: Page
@@ -2758,7 +2758,7 @@ menu:
         menu:
       - title: "Release notes"
         category: Directory
-        show: True
+        show: False
         menu:
         - title: "Changelog"
           category: Directory
@@ -2770,14 +2770,14 @@ menu:
           menu:
         - title: "Release highlights and upgrades"
           category: Directory
-          show: True
+          show: False
           menu:
           - title: "[version]"
             category: Page
             show: False
     - title: "Tyk Sync"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: Page
@@ -2808,7 +2808,7 @@ menu:
         menu:
     - title: "Tyk Identity Broker"
       category: Directory
-      show: True
+      show: False
       menu:
       - title: "Overview"
         category: Page
