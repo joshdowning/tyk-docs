@@ -9,6 +9,11 @@ jobs:
       # Checkout your code
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.92.1'
+          extended: true
       - name: Run script to generate  menu.yaml
         run: |
           make gen-menu
