@@ -555,7 +555,7 @@ The maximum time in seconds that a RPC ping can last.
 EV: <b>TYK_GW_SLAVEOPTIONS_RPCPOOLSIZE</b><br />
 Type: `int`<br />
 
-The number of RPC connections in the pool. Basically it creates a set of connections that you can re-use as needed.
+The number of RPC connections in the pool. Basically it creates a set of connections that you can re-use as needed. Defaults to 5.
 
 ### slave_options.key_space_sync_interval
 EV: <b>TYK_GW_SLAVEOPTIONS_KEYSPACESYNCINTERVAL</b><br />
@@ -1389,6 +1389,12 @@ EV: <b>TYK_GW_COPROCESSOPTIONS_GRPCSENDMAXSIZE</b><br />
 Type: `int`<br />
 
 Maximum message which can be sent to gRPC server
+
+### coprocess_options.grpc_authority
+EV: <b>TYK_GW_COPROCESSOPTIONS_GRPCAUTHORITY</b><br />
+Type: `string`<br />
+
+Authority used in GRPC connection
 
 ### coprocess_options.python_path_prefix
 EV: <b>TYK_GW_COPROCESSOPTIONS_PYTHONPATHPREFIX</b><br />
