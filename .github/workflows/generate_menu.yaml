@@ -1,0 +1,14 @@
+name: Generate Menu.yaml file from csv
+on: [pull_request]
+jobs:
+  Check-max-levels:
+    runs-on: ubuntu-22.04
+    name: Generate Menu.yaml
+    steps:
+
+      # Checkout your code
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run script to generate  menu.yaml
+        run: |
+          make gen-menu
