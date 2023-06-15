@@ -17,3 +17,6 @@ jobs:
       - name: Run script to generate  menu.yaml
         run: |
           make gen-menu
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: save generated menu.yaml
