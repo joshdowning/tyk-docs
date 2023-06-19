@@ -1,0 +1,18 @@
+orphan: /debugging-series/debugging-series
+orphan: /debugging-series/mongodb-debugging
+orphan: /release-notes
+orphan: /release-notes/version-3.0
+orphan: /release-notes/version-3.1
+orphan: /release-notes/version-3.2
+orphan: /release-notes/version-4.0
+orphan: /release-notes/version-4.1
+orphan: /release-notes/version-4.2
+orphan: /release-notes/version-4.3
+orphan: /tyk-apis
+orphan: /upgrading-tyk
+orphan: /upgrading-v2-3-v2-2
+orphan: /release-notes/pump-1.8
+orphan: /release-notes/version-5.0
+orphan: RELEASE NOTES FOR MDCB 2.2.0
+orphan: RELEASE NOTES FOR TYK 5.0.2
+orphan: /universal-data-graph/udg-examples
