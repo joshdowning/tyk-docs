@@ -360,13 +360,54 @@ menu:
       - title: "Securely deploy a REST API"
         category: Page
       - title: "OpenAPI Specification"
-        category: Page
+        category: Directory
+        menu:
+        - title: "Using OAS API Definitions"
+          path: /getting-started/using-oas-definitions
+          category: Page
+        - title: "Create an OAS API"
+          path: /getting-started/using-oas-definitions/create-an-oas-api
+          category: Page
+        - title: "Export an OAS API"
+          path: /getting-started/using-oas-definitions/export-an-oas-api
+          category: Page
+        - title: "Get started with OAS and VS Code"
+          path: /getting-started/using-oas-definitions/get-started-oas
+          category: Page
+        - title: "Import an OAS API"
+          path: /getting-started/using-oas-definitions/import-an-oas-api
+          category: Page
+        - title: "Mock Response"
+          path: /getting-started/using-oas-definitions/mock-response
+          category: Page
+        - title: "Moving to OAS from Tyk Classic APIs"
+          path: /getting-started/using-oas-definitions/moving-to-oas
+          category: Page
+        - title: "OAS Glossary"
+          path: /getting-started/using-oas-definitions/oas-glossary
+          category: Page
+        - title: "OAS Reference"
+          path: /getting-started/using-oas-definitions/oas-reference
+          category: Page
+        - title: "Update existing Tyk API with changes in your OpenAPI definition"
+          path: /getting-started/using-oas-definitions/update-api-with-oas
+          category: Page
+        - title: "Versioning an OAS API"
+          path: /getting-started/using-oas-definitions/versioning-an-oas-api
+          category: Page
       - title: "Publish your first API through the Developer Portal"
         category: Page
       - title: "Add a Kafka data source"
         category: Page
       - title: "Tyk Local Demo library"
-        category: Page
+        category: Directory
+        menu:
+        - title: "Quick Start in Docker"
+          path: /getting-started/quick-start/tyk-demo
+          category: Page
+        - title: "Quick Start in Kubernetes"
+          path: /getting-started/quick-start/tyk-k8s-demo
+          category: Page
       - title: "Install"
         path: /getting-started/installation
         category: Page
@@ -1035,8 +1076,6 @@ menu:
       - title: "API Documentation"
         category: Directory
         menu:
-        - title: "Overview"
-          category: Page
         - title: "Tyk Native API Definition"
           category: Directory
           menu:
@@ -1688,7 +1727,7 @@ menu:
         - title: "Portal Customisation"
           category: Directory
           menu:
-          - title: "Full Customisation"
+          - title: "Complete Customisation"
             category: Directory
             menu:
             - title: "Content Manager Workflow"
@@ -1715,11 +1754,11 @@ menu:
             - title: "Menus Customisation"
               path: /tyk-stack/tyk-developer-portal/enterprise-developer-portal/customise-enterprise-portal/full-customisation/menus-customisation
               category: Page
+            - title: "Quick Customisation"
+              path: /tyk-stack/tyk-developer-portal/enterprise-developer-portal/customise-enterprise-portal/quick-customisation
+              category: Page
           - title: "Customise the Enterprise Portal"
             path: /tyk-stack/tyk-developer-portal/enterprise-developer-portal/customise-enterprise-portal/customise-enterprise-portal
-            category: Page
-          - title: "Quick Customisation"
-            path: /tyk-stack/tyk-developer-portal/enterprise-developer-portal/customise-enterprise-portal/quick-customisation
             category: Page
       - title: "API Documentation"
         category: Directory
