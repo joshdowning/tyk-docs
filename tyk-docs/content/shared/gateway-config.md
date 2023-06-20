@@ -225,23 +225,6 @@ Type: `[]string`<br />
 
 Custom SSL ciphers. See list of ciphers here https://tyk.io/docs/basic-config-and-security/security/tls-and-ssl/#specify-tls-cipher-suites-for-tyk-gateway--tyk-dashboard
 
-### http_server_options.max_request_body_size
-EV: <b>TYK_GW_HTTPSERVEROPTIONS_MAXREQUESTBODYSIZE</b><br />
-Type: `int64`<br />
-
-MaxRequestBodySize configures a maximum size limit for request body size (in bytes) for all APIs on the Gateway.
-
-Tyk Gateway will evaluate all API requests against this size limit and will respond with HTTP 413 status code if the body of the request is larger.
-
-Two methods are used to perform the comparison:
- - If the API Request contains the `Content-Length` header, this is directly compared against `MaxRequestBodySize`.
- - If the `Content-Length` header is not provided, the Request body is read in chunks to compare total size against `MaxRequestBodySize`.
-
-A value of zero (default) means that no maximum is set and API requests will not be tested.
-
-See more information about setting request size limits here:
-https://tyk.io/docs/basic-config-and-security/control-limit-traffic/request-size-limits/#maximum-request-sizes
-
 ### version_header
 EV: <b>TYK_GW_VERSIONHEADER</b><br />
 Type: `string`<br />
@@ -378,6 +361,12 @@ EV: <b>TYK_GW_DBAPPCONFOPTIONS_CONNECTIONSTRING</b><br />
 Type: `string`<br />
 
 Set the URL to your Dashboard instance (or a load balanced instance). The URL needs to be formatted as: `http://dashboard_host:port`
+
+### db_app_conf_options.connection_timeout
+EV: <b>TYK_GW_DBAPPCONFOPTIONS_CONNECTIONTIMEOUT</b><br />
+Type: `int`<br />
+
+Set a timeout value, in seconds, for your Dashboard connection. Default value is 30.
 
 ### db_app_conf_options.node_is_segmented
 EV: <b>TYK_GW_DBAPPCONFOPTIONS_NODEISSEGMENTED</b><br />
