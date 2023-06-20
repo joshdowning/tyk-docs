@@ -2186,9 +2186,6 @@ menu:
     - title: "Managing Control Planes"
       path: /tyk-cloud/environments-deployments/managing-control-planes/
       category: Page
-    - title: "Configuration Options"
-      path: /tyk-cloud/configuration-options/
-      category: Page
     - title: "Managing Users"
       path: /tyk-cloud/teams-users/managing-users/
       category: Page
@@ -2210,50 +2207,8 @@ menu:
     - title: "Teams & Users"
       path: /tyk-cloud/teams-users/
       category: Page
-    - title: "“301 Moved permanently“ error in the Dashboard API"
-      path: /troubleshooting/tyk-cloud-classic/301-moved-permanently/
-      category: Page
-    - title: "Tyk Dashboard Troubleshooting"
-      path: /troubleshooting/tyk-dashboard/
-      category: Page
-    - title: "Tyk Pump Troubleshooting"
-      path: /troubleshooting/tyk-pump/
-      category: Page
-    - title: "Tyk Gateway Troubleshooting"
-      path: /troubleshooting/tyk-gateway/
-      category: Page
-    - title: "Tyk Installation"
-      path: /troubleshooting/tyk-installation/
-      category: Page
-    - title: "“Organisation quota has been exceeded“ error in the Dashboard API"
-      path: /troubleshooting/tyk-cloud-classic/organisation-quota-exceeded-error-dashboard-api/
-      category: Page
-    - title: "“504 GATEWAY_TIMEOUT“ error"
-      path: /troubleshooting/tyk-cloud-classic/504-gateway-timeout-error/
-      category: Page
-    - title: "413 Request Entity Too Large"
-      path: /troubleshooting/tyk-cloud-classic/413-request-entity-large/
-      category: Page
-    - title: "Key information doesn't appear in Dashboard for Tyk Multi-Cloud users"
-      path: /troubleshooting/tyk-multi-cloud/token-information-doesnt-appear-dashboard-tyk-multi-cloud-users/
-      category: Page
-    - title: "Tyk Multi-Cloud"
-      path: /troubleshooting/tyk-multi-cloud/
-      category: Page
-    - title: "Unable to parse JSON Error from Dashboard bootstrap.sh Script"
-      path: /troubleshooting/tyk-installation/parsing-json-error-from-dashboard-bootstrap/
-      category: Page
-    - title: "404 when trying to access Tyk Gateway Repo"
-      path: /troubleshooting/tyk-installation/404-trying-access-tyk-gateway-repo/
-      category: Page
     - title: "Client Credentials Grant Type"
       path: /basic-config-and-security/security/authentication-authorization/oauth2-0/client-credentials-grant/
-      category: Page
-    - title: "Tyk Cloud Classic"
-      path: /troubleshooting/tyk-cloud/
-      category: Page
-    - title: "Getting Started"
-      path: /getting-started/
       category: Page
     - title: "Managing APIs"
       path: /tyk-cloud/environments-deployments/managing-apis/
@@ -2288,26 +2243,11 @@ menu:
     - title: "Analytics Plugins"
       path: /plugins/plugin-types/analytics-plugins/
       category: Page
-    - title: "Troubleshooting"
-      path: /troubleshooting/
-      category: Page
     - title: "MDCB v2.2"
       path: /release-notes/mdcb-2.2/
       category: Page
     - title: "Tyk Analytics Record Fields"
       path: /tyk-stack/tyk-pump/tyk-analytics-record-fields/
-      category: Page
-    - title: "Gateway API"
-      path: /api-management/oss/gateway-api/
-      category: Page
-    - title: "Tyk On-Premises"
-      path: /troubleshooting/tyk-on-premise/tyk-on-premise/
-      category: Page
-    - title: "How to enable websockets in Cloud"
-      path: /frequently-asked-questions/enable-websockets-cloud/
-      category: Page
-    - title: "Cloud Classic Virtual Endpoints not working"
-      path: /frequently-asked-questions/cloud-classic-virtual-endpoints-not-working/
       category: Page
     - title: "Orphan pages"
       path: /orphan/
