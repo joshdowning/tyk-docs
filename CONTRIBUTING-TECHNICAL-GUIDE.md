@@ -2,7 +2,7 @@
 
 Contains the [Tyk Documentation](https://tyk.io/docs/) source.
 
-## How to Contribute
+## How To Contribute?
 
 Using Github GUI in the browser or local dev env, this is the question!
 
@@ -46,8 +46,7 @@ when you work on many pages
 
 #### How to use it?
 
-For internal Tyklings the recommended way to contribute is from a pull request
-branch in the [tyk-docs](https://github.com/TykTechnologies/tyk-docs) repository.
+For internal Tyklings the recommended way to contribute is from a pull request branch in the [tyk-docs](https://github.com/TykTechnologies/tyk-docs) repository.
 
 For external contributions, we recommend contributing to Tyk in the following way:
 
@@ -57,47 +56,39 @@ For external contributions, we recommend contributing to Tyk in the following wa
 - Fetch from the remote branch `git fetch upstream`
 - Rebase your branch with the latest remote branch content `git rebase upstream/master`
 
-The following guide briefly explains how to work with Hugo, you would then need push to your forked repository and then create a Pull Request to Tyk's `master` branch.
+## Installing Hugo
 
-#### Getting Started
+### Run Hugo with Docker
+1. Install [Docker](https://docs.docker.com/get-docker/)
+2. Run `docker-compose up` from the project directory
+
+### Run Hugo Locally
+1. Install [Hugo v0.110.0+extended or greater](https://gohugo.io/installation/)
+2. Run `hugo server --theme=tykio --buildDrafts --enableGitInfo` from the `tyk-docs/tyk-docs` directory
+3. Go to  [http://localhost:1313/docs/nightly/](http://localhost:1313/docs/nightly/) to view the docs locally
+4. The content itself is just markdown that follows the front matter block. After making a change, Hugo should auto-reload and you will be able to see the changes live in your browser. If not, refresh. Sometimes Hugo gets confused and you may need to re-run it
+
+## Getting Started
+
+This section briefly explains how to work with [Hugo](http://gohugo.io/) for creating content in the Tyk Docs repository.
+
+To get started:
 1. Clone this repository 
 2. Navigate to the project directory
 
-##### Using Hugo
-Our Documentation is constructed using [Hugo](http://gohugo.io/).
-
-###### Run Hugo with Docker
-1. [Docker](https://docs.docker.com/get-docker/)
-2. Run `docker-compose up` from the project directory
-
-###### Run Hugo that is installed locally
-1. [Install Hugo v0.110.0+extended or greater](https://gohugo.io/installation/)
-2. Run `hugo server --theme=tykio --buildDrafts --enableGitInfo` from `tyk-docs/tyk-docs` directory
-3. Go to  [http://localhost:1313/docs/nightly/](http://localhost:1313/docs/nightly/) to view the docs locally
-4. The content itself is just markdown that follows the front matter block. After making a change, Hugo should auto-reload and you will be able to see the changes live in your browser (if not, refresh). Sometimes Hugo gets confused and you may need to re-run it
-
-
-###### Adding and Editing Content
-
 The docs content lives in `tyk-docs/content`.
 
+### Adding a New Section and/or a New Page
 
-## Make the changes in the docs 
-
-### Adding a new Section and/or a new page
-
-1. Add a new folder within the `tyk-docs/tyk-docs/content/` Directory. For example `new-section`
-2. Within the root folder of the repository, create a markdown file using the
-   `hugo new` command from your terminal. For the above example you would run `hugo new
---configDir tyk-docs new-section/new-section.md`. This file will be
-   converted to the equivalent of an `index.html` file.
+1. Add a new folder within the `tyk-docs/tyk-docs/content` directory. For example `new-section`.
+2. Within the root folder of the repository, create a markdown file using the `hugo new` command from your terminal. For the above example you would run `hugo new --configDir tyk-docs new-section/new-section.md`. This file will be converted to the equivalent of an `index.html` file.
 3. You can then create other markdown files within that directory, that you can name as you want.
 
 ![readme-example](https://user-images.githubusercontent.com/1983518/36219727-457c16f4-11b0-11e8-9839-946ef00c4655.png)
 
-#### Front Matter
+### Front Matter
 
-For each new file created via `hugo new`, the following YAML formated [Front Matter](http://gohugo.io/content-management/front-matter/) is added:
+For each new file created via `hugo new`, the following YAML formatted [Front Matter](http://gohugo.io/content-management/front-matter/) is added:
 
 ```markdown
 ---
@@ -136,11 +127,12 @@ weight: 10
 ---
 ```
 
-
 ### Links
 
-All links should be defined with `ref` function, which ensure that link will be correct, and will never break docs.
-As value you specify path the file inside of "content" folder, but because our URL structure synced with file structure, it will be same as URL path.
+All links should be defined using the `ref` function. This ensures that links will be correct and will never break docs.
+
+As added value you can specify the file path relative to the "content" folder. However, because our URL structure is synced with file structure, it will be same as URL path.
+
 Example:
 
 ```
@@ -150,6 +142,7 @@ Example:
 ### Images
 
 All images should be uploaded to `assets/img` folder (do not confuse it with `static/img`).
+
 All images should be defined using `img` tag.
 Example:
 
@@ -159,9 +152,9 @@ Example:
 
 `src` and `alt` parameters are required for images.
 
-## Shortcodes
+## Using Shortcodes
 
-Various shortcodes are used within the Tyk documentation.
+Various shortcodes are used within the Tyk documentation to facilitate writing content.
 
 ### Grid shortcode
 
@@ -203,7 +196,7 @@ Content goes here
 
 ### Badge
 
-The badge shortcode can be used in differing ways to populate the 3 grid types. We have used these on the default docs [landing page](https://tyk.io/docs/), and the [Tyk Cloud landing page](https://tyk.io/docs/tyk-cloud). The examples are from the default landing page.
+The badge shortcode can be used in differing ways to populate the 3 grid types. We have used these on the default docs [landing page](https://tyk.io/docs/) and the [Tyk Cloud landing page](https://tyk.io/docs/tyk-cloud). The examples are from the default landing page.
 
 #### Quickstart Installation Badge
 
@@ -219,7 +212,6 @@ Sign up for our new, next level **SaaS** product.
 {{< badge read="15 mins" href="/docs/getting-started/with-tyk-on-premises/installation/on-aws/" image="/docs/img/aws.png">}}
 Install our **On-Premises** product on AWS.
 {{< /badge >}}
-
 
 {{< badge read="10 mins" href="/docs/getting-started/installation/with-tyk-on-premises/docker/" image="/docs/img/docker.png">}}
 Install our **On-Premises** product with Docker.
@@ -435,5 +427,5 @@ When you create a PR in this repository:
 
 3. Verifing your changes in the Netlify build:
 
-- There's no search in this Netlify build. To find your changes copy the from the file path, the text after `/content` till the end, add it to the netlify URL after `/docs/nighly` and delete `.md`.
+- There's no search in this Netlify build. To find your changes copy the from the file path, the text after `/content` till the end, add it to the netlify URL after `/docs/nightly` and delete `.md`.
 - For example to see doc page https://github.com/TykTechnologies/tyk-docs/blob/master/tyk-docs/content/tyk-self-managed/install.md in the Netlify build, copy from this path this bit `/tyk-self-managed/install` and paste after `/docs/nighly` so you get the url https://deploy-preview-2330--tyk-docs.netlify.app/docs/nightly/tyk-self-managed/install/
