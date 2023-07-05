@@ -48,21 +48,21 @@ if len(sys.argv) == 5:
 fileUnknownUrl = outputFileName + "-unknownUrl.txt"
 fileNeedsRedirect = outputFileName + "-needsRedirect.txt"
 fileOrphan = outputFileName + "-orphan.txt"
-fileMaybeDelete = outputFileName + "-maybeDelete.txt"
 fileDoesntExists = outputFileName + "-doesntExists.txt"
 fileUrlCheckNoTitle = outputFileName + "-urlcheck-noTitle.txt"
 fileUrlCheckAliases = outputFileName + "-urlcheck-aliases.txt"
+fileCaseInsensitiveMatches = outputFileName + "-caseInsensitiveMappings.txt"
 fileMenu = "./tyk-docs/data/menu.yaml"
 
 # Open the output files
 openUnknownUrlFile = open(fileUnknownUrl, "w")
 openNeedsRedirectFile = open(fileNeedsRedirect, "w")
 openOrphanFile = open(fileOrphan, "w")
-openMaybeDelete = open(fileMaybeDelete, "w")
 openDoesntExists = open(fileDoesntExists, "w")
 openFileMenu = open(fileMenu, "w")
 openUrlCheckNoTitle = open(fileUrlCheckNoTitle, "w")
 openUrlCheckAliases = open(fileUrlCheckAliases, "w")
+openCaseInsensitiveMatches = open(fileCaseInsensitiveMatches, "w")
 
 #
 # Mapping of paths in urlcheck to title
@@ -118,7 +118,6 @@ with open(urlcheck_path, "r") as file:
             not_used_map[obj["path"].replace("/", "")] = obj["path"]
 
 categories_path = sys.argv[1]
-
 
 #
 # Read the data-bank.csv file
@@ -192,6 +191,7 @@ with open(categories_path, "r") as file:
                     "Product Stack": "/tyk-stack",
                     "Developer Support": "/frequently-asked-questions/faq",
                     "APIM Best Practice": "/getting-started/key-concepts",
+                    "APIM Best Practice": "",
                     "Orphan": "/orphan",
                 }
 
@@ -215,7 +215,6 @@ with open(categories_path, "r") as file:
                 # update current level to empty list, e.g. new_node["children"]
                 current_level = new_node["children"]
 
-
 #
 # Read the pages csv file
 #
@@ -224,8 +223,6 @@ pages_path = sys.argv[2]
 #
 # Read each row in the pages csv ignore first 2 review columns
 # Output to file those columns marked as:
-# - Delete Page
-# - Maybe Delete Page
 # - Page does not exist
 #
 # Ouput to file orphan pages i.e. path not found in mapping path
@@ -238,26 +235,18 @@ with open(pages_path, "r") as file:
 
     # Iterate over rows in the CSV file
     counter = 0
-    for row in reader:
+    for row_index, row in enumerate(reader):
         if counter < 1:
             counter += 1
             continue
         data = row[3:]
 
-        if data[2] == "Delete Page":
-            print("Delete Page, needs redirect: " + data[0], file=openNeedsRedirectFile)
-            continue
-
-        if data[2] == "Maybe Delete Page":
-            print("Maybe Delete Page: " + data[0], file=openMaybeDelete)
-            continue
-
-        if data[2] == "Page doesn't exists":
-            print("Page doesn't exists: " + data[0], file=openDoesntExists)
-            continue
-
         if data[2] == "Other":
             print("Probably an alias: " + data[0])
+            continue
+
+        if data[2] == "tab":
+            print("Tab Page, skip: " + data[0])
             continue
 
         data[0] = data[0].replace("https://tyk.io/docs", "")
@@ -270,12 +259,22 @@ with open(pages_path, "r") as file:
         parts = data[2].split(" --> ")
         current_level = tree
         found = True
+
         for i, part in enumerate(parts):
             found = False
+            lowercase_part = part.lower()
             for node in current_level:
                 if node["name"] == part:
                     current_level = node["children"]
                     found = True
+                    break
+                elif node["name"].lower() == lowercase_part:
+                    current_level = node["children"]
+                    found = True
+                    print(
+                        f"Row#:{row_index+1} :: Path={data[0]} :: Databank={node['name']} :: Page List={part}",
+                        file=openCaseInsensitiveMatches,
+                    )
                     break
 
         if found:
@@ -331,22 +330,64 @@ def print_tree_as_yaml(tree, level=1):
             "  " * level + "  path: " + node["url"] + "\n" if "url" in node else ""
         )
         yaml_string += "  " * level + "  category: " + node["category"] + "\n"
+
+        # display show status
+        yaml_string += (
+            "  " * level + "  show: " + str(node["show"]) + "\n"
+            if "show" in node
+            else ""
+        )
         if node["category"] != "Page":
             yaml_string += "  " * level + "  menu:\n"
             yaml_string += print_tree_as_yaml(node["children"], level + 1)
     return yaml_string
 
 
+def process_show_status(node_list) -> bool:
+    """
+    Add show flag for Page and Directory nodes.
+    If there is no show key in the dictionary then it has
+    not been explicitly set to false because a mapping was
+    not found in the data-bank file. For pages this means writes
+    set the show status to true.
+    Directories are processed recursively. If a directory contains
+    a page that has show set to true it will have a show attribute
+    set to true.
+    """
+    found_path = False
+
+    for menu_node in node_list:
+        menu_category = menu_node.get("category")
+        children = menu_node.get("children", [])
+
+        if menu_category == "Page":
+            path = menu_node.get("url")
+            if path is not None and len(path.strip()) != 0:
+                menu_node["show"] = True
+                found_path = True
+            else:
+                menu_node["show"] = False
+        elif menu_category == "Directory":
+            menu_node["show"] = process_show_status(children)
+            if menu_node.get("show") == True:
+                found_path = True
+        elif menu_category == "Tab":
+            menu_node["show"] = process_show_status(children)
+
+    return found_path
+
+
+process_show_status(tree)
+
 yaml_string = "menu:\n"
 yaml_string += print_tree_as_yaml(tree)
 
 print(yaml_string, file=openFileMenu)
 
-
 # Close the files
 openUnknownUrlFile.close()
 openNeedsRedirectFile.close()
 openOrphanFile.close()
-openMaybeDelete.close()
 openFileMenu.close()
 openUrlCheckNoTitle.close()
+openCaseInsensitiveMatches.close()
